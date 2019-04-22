@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/extra-img/song.PNG">
 <meta property="og:image" content="http://yoursite.com/extra-img/p1.PNG">
-<meta property="og:updated_time" content="2019-04-22T08:42:40.673Z">
+<meta property="og:updated_time" content="2019-04-22T12:52:38.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录自己的github博客搭建">
 <meta name="twitter:description" content="本文主要讲解了github博客的搭建。">
@@ -204,11 +204,20 @@
 <p>好嘛可以直接复制粘贴的…改一下相对路径就好了…</p>
 <p>我还是说一说这个博客本身是怎么搭建的吧…</p>
 <p>因为今天复习了一遍发现自己忘了好多地方…</p>
-<h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1.工具"></a>1.工具</h2><p>git+node.js+hexo+yilia的主题</p>
-<h2 id="2-安装开始"><a href="#2-安装开始" class="headerlink" title="2.安装开始"></a>2.安装开始</h2><p>先弄个github账号new一个Repositories哈…注意路径填：你的用户名.github.io，必须这么填，不然出问题哦…(因为我已经建立过了所以当然会报错…)</p>
+<h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1.工具"></a>1.工具</h2><p>git+node.js+hexo+yilia</p>
+<p>git就可以暂且理解成和github通信的一种cmd</p>
+<p>node.js主要是利用它的npm安装一些依赖</p>
+<p>hexo是一个快速、简洁且高效的博客框架，可以用.md文件解析文章（你现在看到的博客也是用.md文件写出来的）</p>
+<p>yilia是hexo支持的一种主题格式啦</p>
+<p>知道了这些，我们开始。</p>
+<h2 id="2-安装开始"><a href="#2-安装开始" class="headerlink" title="2.安装开始"></a>2.安装开始</h2><p>先弄个github账号</p>
+<p>不会注册的点右上角最小化百度搜哦</p>
+<p>然后登陆，new一个Repositories哈…</p>
+<p>注意路径填：你的用户名.github.io，必须这么填，不然出问题哦…(因为我已经建立过了所以当然会报错…)</p>
 <p><img src="..\..\..\..\extra-img\p1.PNG" alt="p1"></p>
 <p>其次是这样，我们既然通过git远程向github仓库提交自己的博客信息，那第一个问题肯定就是：我怎么让github知道Who I am?</p>
 <p>所以这个时候要记得先在git上给自己生成一个ssh密钥哈，然后把这个密钥添加在github自己的项目里面…</p>
+<p><strong>(以下操作均为在git中执行)</strong></p>
 <p>以防万一看看自己有没有…</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/.ssh</span><br></pre></td></tr></table></figure>
 <p>存在这个文件夹说明你之前为你当前电脑生成过密钥…就不要再生成了</p>
@@ -228,7 +237,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"dgscgym"</span>// 你的github用户名，非昵称!!!!</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure>
 <p>可是我们怎么写博客呢？</p>
 <p>所以接下来就是另外的一个工具上场了：</p>
-<p>出来吧！hexo！</p>
+<p><strong>出来吧！hexo！</strong></p>
 <p>当然这样喊肯定出不来…要运行下面的话安装啦</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
 <p>然后你自己选择一个文件夹当你博客的本地文件存放处，进入那个文件夹后右键git bash运行如下命令</p>
@@ -249,19 +258,19 @@
 <p>OK</p>
 <p>然后我们应该把这个项目推到github了，但是直接运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d == hexo deploy <span class="comment">#把你的博客推送到github</span></span><br></pre></td></tr></table></figure>
-<p>会报错，所以要先修改刚才的_config.yml，加入下面的内容</p>
+<p>会报错，所以要先修改刚才的_config.yml，在最后加入下面的内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:dgscgym/dgscgym.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>现在还不行哦…还要装一个插件才好</p>
+<p>但是要遗憾的告诉你，现在还不行哦…</p>
+<p>我们还要装一个插件才好</p>
+<p>放心，保证是最后一个了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>然后再运行刚才的</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d == hexo deploy <span class="comment">#把你的博客推送到github</span></span><br></pre></td></tr></table></figure>
-<p>OK!现在可以推送了!</p>
-<p>然后我们找到/themes/yilia下面的_config.yml</p>
-<p>注解都蛮详细的…直接改就好，值得说的就是目录问题…</p>
-<p>这个yml的根目录是在根目录下的source文件夹，如果加一个/img/ali.png这样的图片，直接在source建立一个叫img的文件夹，把ali.png放进去就好了…</p>
-<p>写博客的话，进入根目录的下source文件夹中的_posts文件夹，就会看到它自动生成的hello-world.md文件了…然后类似的，在这个路径建文件夹就好了…</p>
-<p>嗯…</p>
-<p>.md的语法我有缘再说，要熄灯了…</p>
+<p>然后你等一会，在浏览器输入你的用户名.github.io</p>
+<p><strong>你看，没骗你吧!</strong></p>
+<p>yilia主题的美化问题以及.md的语法我以后再说</p>
+<p>要熄灯了哎</p>
+<h2 id="热死老子了究竟什么时候可以不断电！"><a href="#热死老子了究竟什么时候可以不断电！" class="headerlink" title="热死老子了究竟什么时候可以不断电！"></a>热死老子了究竟什么时候可以不断电！</h2><p>不用二级标题已经不能表达我的吐槽了…</p>
 <p>现在放的歌叫越来越不懂，蔡健雅的，也很好听啊！！！！！！！！</p>
 <p>晚安。</p>
 
@@ -376,6 +385,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/04/22/2019年计划如下/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2019年计划如下
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
