@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="菜鸡本鸡">
 <meta property="og:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/extra-img/基础架构.PNG">
+<meta property="og:image" content="http://yoursite.com/extra-img/基础架构.png">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子2.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子3.jpg">
-<meta property="og:updated_time" content="2020-05-25T15:02:54.191Z">
+<meta property="og:updated_time" content="2020-05-25T15:07:45.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="亚信科技 数据库学习day1">
 <meta name="twitter:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
-<meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.PNG">
+<meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.png">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -206,7 +206,7 @@
       
         <p>今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）</p>
 <a id="more"></a>
-<h2 id="Mysql基础架构"><a href="#Mysql基础架构" class="headerlink" title="Mysql基础架构"></a>Mysql基础架构</h2><p><img src="..\..\..\..\extra-img\基础架构.PNG" alt="基础架构"></p>
+<h2 id="Mysql基础架构"><a href="#Mysql基础架构" class="headerlink" title="Mysql基础架构"></a>Mysql基础架构</h2><p><img src="..\..\..\..\extra-img\基础架构.png" alt="基础架构"></p>
 <p>可以看到，Mysql可以分为Server以及存储引擎两部分，Server包括连接器、查询缓存、分析器、优化器以及执行器等，其中包括Mysql所有的内置函数，且执行跨存储引擎的功能，比如存储过程、触发器、视图等。</p>
 <p>而存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持InnoDB、MyISAM、Memory 等多个存储引擎。在create table时，不指定引擎，则会默认是InnoDB。除非指定engine=memory。不同引擎存取方式以及支持功能都不相同，但是不同的存储引擎会指向相同的Server。</p>
 <h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><p>其用于管理连接。</p>
