@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 菜鸡本鸡</title>
+  <title>亚信科技 数据库学习day1 | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="菜鸡本鸡">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
+<meta name="keywords" content="数据库相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="亚信科技 数据库学习day1">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/20200525学习总结/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
+<meta property="og:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/extra-img/基础架构.PNG">
+<meta property="og:image" content="http://yoursite.com/extra-img/触发器例子.jpg">
+<meta property="og:image" content="http://yoursite.com/extra-img/触发器例子2.jpg">
+<meta property="og:image" content="http://yoursite.com/extra-img/触发器例子3.jpg">
+<meta property="og:updated_time" content="2020-05-25T15:02:54.191Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="菜鸡本鸡">
+<meta name="twitter:title" content="亚信科技 数据库学习day1">
+<meta name="twitter:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
+<meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.PNG">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -174,36 +184,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20200525学习总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/20200525学习总结/" class="archive-article-date">
-  	<time datetime="2020-05-25T12:15:09.743Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/20200525学习总结/">亚信科技 数据库学习day1</a>
+    <h1 class="article-title" itemprop="name">
+      亚信科技 数据库学习day1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/05/25/20200525学习总结/" class="archive-article-date">
+  	<time datetime="2020-05-25T12:15:09.743Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）</p>
+<a id="more"></a>
+<h2 id="Mysql基础架构"><a href="#Mysql基础架构" class="headerlink" title="Mysql基础架构"></a>Mysql基础架构</h2><p><img src="..\..\..\..\extra-img\基础架构.PNG" alt="基础架构"></p>
+<p>可以看到，Mysql可以分为Server以及存储引擎两部分，Server包括连接器、查询缓存、分析器、优化器以及执行器等，其中包括Mysql所有的内置函数，且执行跨存储引擎的功能，比如存储过程、触发器、视图等。</p>
+<p>而存储引擎层负责数据的存储和提取。其架构模式是插件式的，支持InnoDB、MyISAM、Memory 等多个存储引擎。在create table时，不指定引擎，则会默认是InnoDB。除非指定engine=memory。不同引擎存取方式以及支持功能都不相同，但是不同的存储引擎会指向相同的Server。</p>
+<h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><p>其用于管理连接。</p>
+<p>一般来说我们使用该语句连接数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h$ip -P$port -u$user -p</span><br></pre></td></tr></table></figure>
+<p>按回车后即可输入密码信息，虽然密码跟在-p后面可以，但是不建议这么做，因为可能导致密码泄露。</p>
+<p>连接命令过后，会经过经典的TCP握手——如果密码不对，提示错误；密码正确，进入数据库，并确定所拥有的权限（确定后直到连接结束都会保有，即使管理员在此期间进行更改也是如此）</p>
+<p>连接完成后，如果你没有后续的动作，这个连接就处于空闲状态，可以利用show processlist命令进行查看，如果有人”Sleep”了，则表示此连接空闲，保持时间太长的话，连接器会自动断开此连接，具体时长由参数wait_timeout决定。</p>
+<p>这里提到了长连接以及短链接的概念——长连接是指连接成功后如果客户端始终有请求，就一直用同一个连接，短连接则是指每次仅执行几次查询就断开连接，下次查询再重新建立一个，由于建立连接很复杂，所以建议多使用长连接。</p>
+<p>然而过多长连接还会导致连接对象的临时使用内存太多导致内存占用过大，被系统强行杀掉，对于这个问题，可以采用</p>
+<ul>
+<li>定期断开长连接，或者用程序进行内存占用判断。</li>
+<li>执行mysql_reset_connection对连接资源进行重新初始化，直接回到刚刚创建完连接的状态。</li>
+</ul>
+<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p><strong>Mysql 8.0之后，该功能被废弃。</strong></p>
+<p>查询完成后，mysql会将key-value存储在缓存中，key为查询语句，value是查询结果，在后续查询中，如果在缓存中查到了该查询语句，则直接返回结果。(在返回结果时，需要对用户做权限验证)</p>
+<p>但是，只要有对一个表的更新，查询缓存就会被<strong>清空</strong></p>
+<p>在某个版本后(8.0之前)，查询缓存可以利用SQL_CACHE关键字指定是否使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select SQL_CACHE * from T where ID=10；</span><br></pre></td></tr></table></figure>
+<h3 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h3><p>用来对查询语句进行词法分析和语法分析</p>
+<p>首先做“词法分析”，比如看到”select”，得到其为查询语句，字符串”T”被识别为“表名”，“ID”识别为“列ID”。</p>
+<p>然后做“语法分析”，根据词法分析结果检查此语句是否符合语法（不符合语法的例子，比如说查到了不存在的行…）</p>
+<h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><p>在表里有多个索引的时候决定使用哪个索引，或者在一个语句中有多表关联的时候决定连接顺序，比如说，执行下述语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 join t2 using(ID)  where t1.c=10 and t2.d=20;</span><br></pre></td></tr></table></figure>
+<p>可以先从表t1中挑出c=10的行对应的ID值，关联到t2，判断t2内的d的值是否等于20。</p>
+<p>也可以先从表t2中挑出d=20的行对应的ID值，关联到t1，判断t1内的c的值是否等于10。</p>
+<p>两句话结果相同但效率不同，优化器可以决定选择哪一种方案。</p>
+<h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><p>优化器确定方案后，执行器就会按照方案执行语句。</p>
+<p>开始执行之前，要判断用户是否对表有操作权限，如果没有则会返回权限错误。如果有，则进行如下过程：</p>
+<ul>
+<li><p>调用 InnoDB 引擎接口取这个表的第一行，判断 ID 值是否符合结果，如果不符合则跳过，如果符合则将这行存在结果集中；</p>
+</li>
+<li><p>调用引擎接口取“下一行”，重复相同的判断逻辑，直到取到这个表的最后一行。</p>
+</li>
+<li>执行器将上述遍历过程中所有满足条件的行组成的记录集作为结果集返回给客户端，执行完成。</li>
+</ul>
+<p>有索引的表，也差不多，第一次调用的是“取满足条件的第一行”这个接口，之后循环取“满足条件的下一行”这个接口，这些接口都是引擎中已经定义好的。</p>
+<p>在数据库的慢查询日志中有一个 rows_examined字段，表示这个语句执行过程中扫描了多少行，这个值是在执行器每次调用引擎获取数据行时叠加得到。</p>
+<p>但是在在有些场景下，<strong>执行器调用一次，在引擎内部则扫描了多行</strong>，所以引擎扫描行数跟 rows_examined 并不完全相同。</p>
+<p>下面对涉及到的基础知识进行梳理。</p>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>核心语法如下，对照后面的例子会更清晰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">CREATE</span><br><span class="line">    [DEFINER = &#123; user | CURRENT_USER &#125;]</span><br><span class="line">　PROCEDURE sp_name ([proc_parameter[,...]])</span><br><span class="line">    [characteristic ...] routine_body</span><br><span class="line"> </span><br><span class="line">proc_parameter:</span><br><span class="line">    [ IN | OUT | INOUT ] param_name type</span><br><span class="line">#IN 输入参数：表示调用者向过程传入值（传入值可以是字面量或变量） </span><br><span class="line">#OUT 输出参数：表示过程向调用者传出值(可以返回多个值)（传出值只能是变量） </span><br><span class="line">#INOUT 输入输出参数：既表示调用者向过程传入值，又表示过程向调用者传出值（值只能是变量）（少用！）</span><br><span class="line"></span><br><span class="line">characteristic:</span><br><span class="line">    COMMENT &apos;string&apos;</span><br><span class="line">  | LANGUAGE SQL</span><br><span class="line">  | [NOT] DETERMINISTIC</span><br><span class="line">  | &#123; CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA &#125;</span><br><span class="line">  | SQL SECURITY &#123; DEFINER | INVOKER &#125;</span><br><span class="line"> </span><br><span class="line">routine_body:</span><br><span class="line">　　Valid SQL routine statement</span><br><span class="line"> </span><br><span class="line">[begin_label:] BEGIN	#可以贴标签——label1: BEGIN与END label1是成对存在的</span><br><span class="line">　　[statement_list]</span><br><span class="line">　　　　……</span><br><span class="line">END [end_label]</span><br></pre></td></tr></table></figure>
+<p>还可以自定义结束符，默认为分号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELIMITER $$</span><br><span class="line">或</span><br><span class="line">DELIMITER //</span><br></pre></td></tr></table></figure>
+<p>BEGIN和END标志着<strong>存储过程</strong>的开始以及结束。</p>
+<p>存储过程创建以及调用如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; delimiter $$　　#将语句的结束符号从分号;临时改为两个$$(可以是自定义)</span><br><span class="line">mysql&gt; CREATE PROCEDURE delete_matches(IN p_playerno INTEGER) #IN表示输入参数，即使没有参数，()也要存在</span><br><span class="line">    -&gt; BEGIN</span><br><span class="line">    -&gt; 　　DELETE FROM MATCHES</span><br><span class="line">    -&gt;    WHERE playerno = p_playerno;</span><br><span class="line">    -&gt; END$$</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"> </span><br><span class="line">mysql&gt; delimiter;　　#将语句的结束符号恢复为分号</span><br><span class="line">mysql&gt; call delete_matches(57);	#call用来对存储过程进行调用。(57)为输入参数</span><br></pre></td></tr></table></figure>
+<p>上述例子表示了输入参数的使用，OUT和INOUT的例子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#OUT例子</span><br><span class="line">mysql&gt; delimiter //</span><br><span class="line">mysql&gt; create procedure out_param(out p_out int)</span><br><span class="line">    -&gt;   begin</span><br><span class="line">    -&gt;     select p_out;</span><br><span class="line">    -&gt;     set p_out=2;</span><br><span class="line">    -&gt;     select p_out;</span><br><span class="line">    -&gt;   end</span><br><span class="line">    -&gt; //</span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line"> </span><br><span class="line">mysql&gt; set @p_out=1; #类似于声明一个名为p_out的变量，赋值为1</span><br><span class="line"> </span><br><span class="line">mysql&gt; call out_param(@p_out);</span><br><span class="line">+-------+</span><br><span class="line">| p_out |</span><br><span class="line">+-------+</span><br><span class="line">|  NULL |</span><br><span class="line">+-------+</span><br><span class="line">　　#因为out是向调用者输出参数，不接收输入的参数，所以存储过程里的p_out为null</span><br><span class="line">+-------+</span><br><span class="line">| p_out |</span><br><span class="line">+-------+</span><br><span class="line">|     2 |</span><br><span class="line">+-------+</span><br><span class="line"> </span><br><span class="line">mysql&gt; select @p_out;</span><br><span class="line">+--------+</span><br><span class="line">| @p_out |</span><br><span class="line">+--------+</span><br><span class="line">|      2 |</span><br><span class="line">+--------+</span><br><span class="line">　　#调用了out_param存储过程，输出参数，改变了p_out变量的值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># INOUT例子</span><br><span class="line">mysql&gt; delimiter $$</span><br><span class="line">mysql&gt; create procedure inout_param(inout p_inout int)</span><br><span class="line">    -&gt;   begin</span><br><span class="line">    -&gt;     select p_inout;</span><br><span class="line">    -&gt;     set p_inout=2;</span><br><span class="line">    -&gt;     select p_inout;</span><br><span class="line">    -&gt;   end</span><br><span class="line">    -&gt; $$</span><br><span class="line">mysql&gt; delimiter ;</span><br><span class="line"> </span><br><span class="line">mysql&gt; set @p_inout=1;</span><br><span class="line"> </span><br><span class="line">mysql&gt; call inout_param(@p_inout);</span><br><span class="line">+---------+</span><br><span class="line">| p_inout |</span><br><span class="line">+---------+</span><br><span class="line">|       1 |</span><br><span class="line">+---------+</span><br><span class="line"> </span><br><span class="line">+---------+</span><br><span class="line">| p_inout |</span><br><span class="line">+---------+</span><br><span class="line">|       2 |</span><br><span class="line">+---------+</span><br><span class="line"> </span><br><span class="line">mysql&gt; select @p_inout;</span><br><span class="line">+----------+</span><br><span class="line">| @p_inout |</span><br><span class="line">+----------+</span><br><span class="line">|        2 |</span><br><span class="line">+----------+</span><br><span class="line">#调用了inout_param存储过程，接受了输入的参数，也输出参数，改变了变量</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，参数名不要等于列名，不然在过程体中，参数名被当做列名来处理</p>
+<p>感觉存储过程和面向过程的C语言函数是很类似的，变量赋值的操作已经在前面见到了，此外，其还可以声明，而且也和C语言一样，声明语句需要放在存储过程体的开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DECLARE l_int int unsigned default 4000000;  </span><br><span class="line">DECLARE l_numeric number(8,2) DEFAULT 9.95;  #8个有效位，2位是小数，最大是999999.99</span><br><span class="line">DECLARE l_date date DEFAULT &apos;1999-12-31&apos;;  </span><br><span class="line">DECLARE l_datetime datetime DEFAULT &apos;1999-12-31 23:59:59&apos;;  </span><br><span class="line">DECLARE l_varchar varchar(255) DEFAULT &apos;This will not be padded&apos;;</span><br></pre></td></tr></table></figure>
+<p>还可以在内部声明局部变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc3()  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare x1 varchar(5) default &apos;outer&apos;;  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare x1 varchar(5) default &apos;inner&apos;;  </span><br><span class="line">      -&gt; select x1;  </span><br><span class="line">      -&gt; end;  </span><br><span class="line">       -&gt; select x1;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ;</span><br></pre></td></tr></table></figure>
+<p>如果需要得到局部变量的运行结果，将其赋值给一个out变量即可。</p>
+<p>存储过程中还可以有逻辑判断关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">#IF-THEN-ELSE-END IF型</span><br><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc2(IN parameter int)  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare var int;  </span><br><span class="line">     -&gt; set var=parameter+1;  </span><br><span class="line">     -&gt; if var=0 then </span><br><span class="line">     -&gt; insert into t values(17);  </span><br><span class="line">     -&gt; end if;  </span><br><span class="line">     -&gt; if parameter=0 then </span><br><span class="line">     -&gt; update t set s1=s1+1;  </span><br><span class="line">     -&gt; else </span><br><span class="line">     -&gt; update t set s1=s1+2;  </span><br><span class="line">     -&gt; end if;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ;</span><br><span class="line"></span><br><span class="line">#CASE-WHEN-THEN-ELSE-END CASE型</span><br><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc3 (in parameter int)  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare var int;  </span><br><span class="line">     -&gt; set var=parameter+1;  </span><br><span class="line">     -&gt; case var  </span><br><span class="line">     -&gt; when 0 then   </span><br><span class="line">     -&gt; insert into t values(17);  </span><br><span class="line">     -&gt; when 1 then   </span><br><span class="line">     -&gt; insert into t values(18);  </span><br><span class="line">     -&gt; else   </span><br><span class="line">     -&gt; insert into t values(19);  </span><br><span class="line">     -&gt; end case;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ; </span><br><span class="line"></span><br><span class="line">#WHILE-END WHILE型(先判断，后运行)</span><br><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc4()  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare var int;  </span><br><span class="line">     -&gt; set var=0;  </span><br><span class="line">     -&gt; while var&lt;6 do  </span><br><span class="line">     -&gt; insert into t values(var);  </span><br><span class="line">     -&gt; set var=var+1;  </span><br><span class="line">     -&gt; end while;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ;</span><br><span class="line"></span><br><span class="line">#REPEAT-UNTIL-END REPEAT型(类似于Do while，先运行，后判断)</span><br><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc5 ()  </span><br><span class="line">     -&gt; begin   </span><br><span class="line">     -&gt; declare v int;  </span><br><span class="line">     -&gt; set v=0;  </span><br><span class="line">     -&gt; repeat  </span><br><span class="line">     -&gt; insert into t values(v);  </span><br><span class="line">     -&gt; set v=v+1;  </span><br><span class="line">     -&gt; until v&gt;=5  </span><br><span class="line">     -&gt; end repeat;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ;</span><br><span class="line"></span><br><span class="line">#LOOP-leave-END LOOP型(没有开始与结束条件，利用leave跳出，跳到复合语句的最后一步)</span><br><span class="line">mysql &gt; DELIMITER //  </span><br><span class="line">mysql &gt; CREATE PROCEDURE proc6 ()  </span><br><span class="line">     -&gt; begin </span><br><span class="line">     -&gt; declare v int;  </span><br><span class="line">     -&gt; set v=0;  </span><br><span class="line">     -&gt; LOOP_LABLE:loop  </span><br><span class="line">     -&gt; insert into t values(v);  </span><br><span class="line">     -&gt; set v=v+1;  </span><br><span class="line">     -&gt; if v &gt;=5 then </span><br><span class="line">     -&gt; leave LOOP_LABLE;  </span><br><span class="line">     -&gt; end if;  </span><br><span class="line">     -&gt; end loop;  </span><br><span class="line">     -&gt; end;  </span><br><span class="line">     -&gt; //  </span><br><span class="line">mysql &gt; DELIMITER ;</span><br></pre></td></tr></table></figure>
+<p>接下来是用户变量，通常以@开头，在此次连接中声明的用户变量无法在其他连接中使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; SELECT &apos;Hello World&apos; into @x;  </span><br><span class="line">mysql &gt; SELECT @x;  </span><br><span class="line">+-------------+  </span><br><span class="line">|   @x        |  </span><br><span class="line">+-------------+  </span><br><span class="line">| Hello World |  </span><br><span class="line">+-------------+  </span><br><span class="line">mysql &gt; SET @y=&apos;Goodbye Cruel World&apos;;  </span><br><span class="line">mysql &gt; SELECT @y;  </span><br><span class="line">+---------------------+  </span><br><span class="line">|     @y              |  </span><br><span class="line">+---------------------+  </span><br><span class="line">| Goodbye Cruel World |  </span><br><span class="line">+---------------------+  </span><br><span class="line"> </span><br><span class="line">mysql &gt; SET @z=1+2+3;  </span><br><span class="line">mysql &gt; SELECT @z;  </span><br><span class="line">+------+  </span><br><span class="line">| @z   |  </span><br><span class="line">+------+  </span><br><span class="line">|  6   |  </span><br><span class="line">+------+</span><br><span class="line"></span><br><span class="line">#下面是在存储过程中使用用户变量</span><br><span class="line">mysql &gt; CREATE PROCEDURE GreetWorld( ) SELECT CONCAT(@greeting,&apos; World&apos;);  </span><br><span class="line">mysql &gt; SET @greeting=&apos;Hello&apos;;  </span><br><span class="line">mysql &gt; CALL GreetWorld( );  </span><br><span class="line">+----------------------------+  </span><br><span class="line">| CONCAT(@greeting,&apos; World&apos;) |  </span><br><span class="line">+----------------------------+  </span><br><span class="line">|  Hello World               |  </span><br><span class="line">+----------------------------+</span><br></pre></td></tr></table></figure>
+<p>接下来是存储过程的注释，以下两种都可以被接受</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--我是注释 </span><br><span class="line">/*我是注释*/</span><br></pre></td></tr></table></figure>
+<p>最后，我们还可以用类似对表的增改删查的方式操作存储过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">showprocedure status where db=&apos;数据库名&apos;; 	#得到的是存储过程列表</span><br><span class="line">SHOWCREATE PROCEDURE 数据库.存储过程名;	#得到的是某个存储过程的具体内容</span><br><span class="line">DROPPROCEDURE	#删除存储过程</span><br><span class="line">ALTER PROCEDURE	#更改存储过程</span><br></pre></td></tr></table></figure>
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>其语法结构大致如下，与存储过程类似：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create trigger 触发器名称</span><br><span class="line">after/before (触发时间)	#before/after表示在该语句执行前/后执行触发器</span><br><span class="line">insert/update/delete (监视事件)</span><br><span class="line">on  表名 (监视地址，在哪个表发生了监视时间) </span><br><span class="line">for each row</span><br><span class="line">begin</span><br><span class="line">sql1;</span><br><span class="line">..</span><br><span class="line">sqlN;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>下面为触发器的例子，表示在向order_table插入后，随即执行begin与end之间的更新语句。</p>
+<p><img src="..\..\..\..\extra-img\触发器例子.jpg" alt="触发器例子"></p>
+<p>值得注意的是，实战中也需要和存储过程一样用<strong>DELIMITER //</strong> 修改结束符，因为语句结束符与存储过程/触发器结束符相冲突。</p>
+<p>在触发器中还有如下的规则：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对于insert，插入一行后出现了一个新行用new表示，在触发器中可以通过new.列名来引用插入行各个字段的值</span><br><span class="line">对于delete，删除一行后之前的那行不见了，用old表示，在触发器中可以通过old.列名来引用被删除行各个字段的值</span><br><span class="line">对于update，修改一行后旧的一样用old表示，新的一行用new表示，在触发器中可以通过new.列名来引用修改后行各个字段的值，old.列名来引用修改前各个字段的值。</span><br></pre></td></tr></table></figure>
+<p>例子如下所示，其中体现了对new的使用：</p>
+<p><img src="..\..\..\..\extra-img\触发器例子2.jpg" alt="触发器例子2"></p>
+<p>下面的例子一是体现了在操作之前进行检查，二是体现了触发器中与存储过程一样的变量声明、赋值操作。</p>
+<p><img src="..\..\..\..\extra-img\触发器例子3.jpg" alt="触发器例子3"></p>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>视图可以理解为一个虚拟的表，在引用视图时根据表中内容动态生成。(使用场景：为用户分配视图防止权限滥用)</p>
+<p>创建语句如下，生成的视图与SELECT语句结果一致：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create view other as select a.name as username, b.name as goodsname from user as a, goods as b, ug as c where a.id=c.userid and c.goodsid=b.id;</span><br></pre></td></tr></table></figure>
+<p>然后只要用 SELECT * FROM other 即可查看该视图。</p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>索引可以大大提高MySQL的检索速度，但是其首先会占用磁盘空间，更严重的是其会降低更新表的速度，因为MYSQL在更新表的同时还要更新索引。(使用场景：经常查的、不经常改的)</p>
+<p>相关语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX indexName ON mytable(username(length));	#在表中创建索引</span><br><span class="line">ALTER table tableName ADD INDEX indexName(columnName)	#添加一个索引在表内</span><br><span class="line">#也可以在创建表的时候添加</span><br><span class="line">CREATE TABLE mytable(  </span><br><span class="line">ID INT NOT NULL,   </span><br><span class="line">username VARCHAR(16) NOT NULL,  </span><br><span class="line">INDEX [indexName] (username(length))  </span><br><span class="line">);</span><br><span class="line">DROP INDEX [indexName] ON mytable;	#删除在表中附着的索引(除主键索引外，都用这个语句)</span><br></pre></td></tr></table></figure>
+<p>索引还有唯一索引(索引列的值必须唯一，但允许有空值，空值也可以多次出现)，组合索引（列值的组合必须唯一）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">唯一索引</span><br><span class="line">CREATE UNIQUE INDEX indexName ON mytable(username(length));</span><br><span class="line">ALTER table tableName ADD UNIQUE indexName(columnName)</span><br><span class="line">CREATE TABLE mytable(  </span><br><span class="line">ID INT NOT NULL,   </span><br><span class="line">username VARCHAR(16) NOT NULL,  </span><br><span class="line">UNIQUE [indexName] (username(length))  </span><br><span class="line">);</span><br><span class="line">组合索引</span><br><span class="line">CREATE INDEX indexName ON mytable(username(length),password(length));</span><br><span class="line">主键索引(一般情况下会在建表时同时创建，且不能为空)</span><br><span class="line">CREATE TABLE mytable(  </span><br><span class="line">ID INT NOT NULL,   </span><br><span class="line">username VARCHAR(16) NOT NULL,  </span><br><span class="line">PRIMARY KEY (`id`) </span><br><span class="line">);</span><br><span class="line">ALTER TABLE test.t1 ADD PRIMARY KEY (column_list);</span><br><span class="line">DROP PRIMARY KEY;	#删除主键索引</span><br><span class="line">全文索引</span><br><span class="line">ALTER TABLE tbl_name ADD FULLTEXT index_name (column_list)</span><br></pre></td></tr></table></figure>
+<p>查询索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW INDEX FROM table_name;</span><br></pre></td></tr></table></figure>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>多表查询时会用到的关键词，有如下三种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JOIN/INNER JOIN（内连接,或等值连接）：获取两个表中字段匹配关系的记录。</span><br><span class="line">LEFT JOIN（左连接）：获取左表所有记录，即使右表没有对应匹配的记录。</span><br><span class="line">RIGHT JOIN（右连接）： 与 LEFT JOIN 相反，用于获取右表所有记录，即使左表没有对应匹配的记录。</span><br></pre></td></tr></table></figure>
+<p>下面的例子涵盖了所有内容、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#有两个表，tcount_tbl以及runoob_tbl，内容如下</span><br><span class="line">mysql&gt; use RUNOOB;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; SELECT * FROM tcount_tbl;</span><br><span class="line">+---------------+--------------+</span><br><span class="line">| runoob_author | runoob_count |</span><br><span class="line">+---------------+--------------+</span><br><span class="line">| 菜鸟教程  | 10           |</span><br><span class="line">| RUNOOB.COM    | 20           |</span><br><span class="line">| Google        | 22           |</span><br><span class="line">+---------------+--------------+</span><br><span class="line">3 rows in set (0.01 sec)</span><br><span class="line"> </span><br><span class="line">mysql&gt; SELECT * from runoob_tbl;</span><br><span class="line">+-----------+---------------+---------------+-----------------+</span><br><span class="line">| runoob_id | runoob_title  | runoob_author | submission_date |</span><br><span class="line">+-----------+---------------+---------------+-----------------+</span><br><span class="line">| 1         | 学习 PHP    | 菜鸟教程  | 2017-04-12      |</span><br><span class="line">| 2         | 学习 MySQL  | 菜鸟教程  | 2017-04-12      |</span><br><span class="line">| 3         | 学习 Java   | RUNOOB.COM    | 2015-05-01      |</span><br><span class="line">| 4         | 学习 Python | RUNOOB.COM    | 2016-03-06      |</span><br><span class="line">| 5         | 学习 C      | FK            | 2017-04-05      |</span><br><span class="line">+-----------+---------------+---------------+-----------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">#inner join,取交集</span><br><span class="line">mysql&gt; SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a INNER JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| a.runoob_id | a.runoob_author | b.runoob_count |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| 1           | 菜鸟教程    | 10             |</span><br><span class="line">| 2           | 菜鸟教程    | 10             |</span><br><span class="line">| 3           | RUNOOB.COM      | 20             |</span><br><span class="line">| 4           | RUNOOB.COM      | 20             |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#left join,结果会保留左边(runoob_tbl)表的全部内容</span><br><span class="line">mysql&gt; SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a LEFT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| a.runoob_id | a.runoob_author | b.runoob_count |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| 1           | 菜鸟教程    | 10             |</span><br><span class="line">| 2           | 菜鸟教程    | 10             |</span><br><span class="line">| 3           | RUNOOB.COM      | 20             |</span><br><span class="line">| 4           | RUNOOB.COM      | 20             |</span><br><span class="line">| 5           | FK              | NULL           |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">#right join,结果会保留右边表(tcount_tbl)的全部内容</span><br><span class="line">mysql&gt; SELECT a.runoob_id, a.runoob_author, b.runoob_count FROM runoob_tbl a RIGHT JOIN tcount_tbl b ON a.runoob_author = b.runoob_author;</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| a.runoob_id | a.runoob_author | b.runoob_count |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">| 1           | 菜鸟教程    | 10             |</span><br><span class="line">| 2           | 菜鸟教程    | 10             |</span><br><span class="line">| 3           | RUNOOB.COM      | 20             |</span><br><span class="line">| 4           | RUNOOB.COM      | 20             |</span><br><span class="line">| NULL        | NULL            | 22             |</span><br><span class="line">+-------------+-----------------+----------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>在此叩谢<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -215,105 +347,135 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/25/20200525学习总结/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/27/Markdown相关操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Markdown相关操作</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/27/Markdown相关操作/" class="archive-article-date">
-  	<time datetime="2019-12-27T13:04:41.250Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
-</a>
-        </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/27/Markdown相关操作/">Markdown相关操作</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="20200525学习总结" data-title="亚信科技 数据库学习day1" data-url="http://yoursite.com/2020/05/25/20200525学习总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/21/博客搭建/" class="archive-article-date">
-  	<time datetime="2019-04-21T12:51:05.406Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/21/博客搭建/">记录自己的github博客搭建</a>
-    </h1>
+  <div id="SOHUCS" sid="20200525学习总结"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyucd0aLb",
+        conf: "547e882b25af018112302b489d2d15b0"
+    });
+</script>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客相关</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -336,8 +498,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
