@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://yoursite.com/extra-img/最左前缀.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/索引下推1.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/索引下推2.jpg">
-<meta property="og:updated_time" content="2020-05-29T07:24:31.591Z">
+<meta property="og:updated_time" content="2020-05-29T07:43:43.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="亚信科技 数据库学习day3">
 <meta name="twitter:description" content="今日内容：Mysql的索引细节   Table of Contents  generated with DocToc  1. 索引的常见类型 哈希表 有序数组 二叉搜索树   2.InnoDB 的索引模型——B+树 索引维护   思考题1 3.索引优化 覆盖索引 最左前缀原则 索引下推   思考题2">
@@ -235,6 +235,10 @@
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <a id="more"></a>
+<p>来源致谢：</p>
+<p><a href="https://time.geekbang.org/column/article/c8b462e6cc63cbe18ff986fb6e203b3d/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage" target="_blank" rel="noopener">https://time.geekbang.org/column/article/c8b462e6cc63cbe18ff986fb6e203b3d/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage</a></p>
+<p><a href="https://time.geekbang.org/column/article/a4ba9f5a0894eed77bdd67b9d46c6400/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage" target="_blank" rel="noopener">https://time.geekbang.org/column/article/a4ba9f5a0894eed77bdd67b9d46c6400/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage</a></p>
+<p>侵删。</p>
 <p>索引约等于书的目录，以存储空间(类比为书的额外页数)为代价提高查找效率。</p>
 <h2 id="1-索引的常见类型"><a href="#1-索引的常见类型" class="headerlink" title="1. 索引的常见类型"></a>1. 索引的常见类型</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希表是以key-value形式存储数据的结构，输入key就可以换算成一个确定的位置，然后把value放在对应位置即可。</p>
 <p>如果多个key指向同一个位置怎么办？——在那个位置拉出一个链表。</p>

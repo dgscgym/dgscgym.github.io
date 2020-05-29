@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/extra-img/ex9.png">
 <meta property="og:image" content="http://yoursite.com/extra-img/ex10.png">
 <meta property="og:image" content="http://yoursite.com/extra-img/ex11.png">
-<meta property="og:updated_time" content="2020-05-29T07:25:24.195Z">
+<meta property="og:updated_time" content="2020-05-29T07:42:58.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="亚信科技 数据库学习day2">
 <meta name="twitter:description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
@@ -235,6 +235,10 @@
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <a id="more"></a>
+<p>来源致谢：</p>
+<p><a href="https://time.geekbang.org/column/article/ae58ed457716d074cd2e44dfd287b7fc/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D" target="_blank" rel="noopener">https://time.geekbang.org/column/article/ae58ed457716d074cd2e44dfd287b7fc/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D</a></p>
+<p><a href="https://time.geekbang.org/column/article/93e525721c262bb9af1e05c00b590329/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D" target="_blank" rel="noopener">https://time.geekbang.org/column/article/93e525721c262bb9af1e05c00b590329/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D</a></p>
+<p>侵删。</p>
 <h2 id="1-Mysql日志系统"><a href="#1-Mysql日志系统" class="headerlink" title="1.Mysql日志系统"></a>1.Mysql日志系统</h2><p>昨天主要针对的是查询语句的执行过程，今天的日志系统是为了解决更新语句的执行流程。然而查询语句经历的，更新语句同样大多也要经历，所以这里还是拿出昨天的基础架构图：</p>
 <p><img src="..\..\..\..\extra-img\基础架构.png" alt="基础架构"></p>
 <p>执行语句前还是要连接数据库(连接器)，还是要进行词法语法分析(分析器)，但是查询缓存会在更新后失效，然后还是要由优化器决定使用哪种索引，最后由执行器进行具体执行。</p>
