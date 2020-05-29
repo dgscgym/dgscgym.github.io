@@ -176,6 +176,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-20200529学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/29/20200529学习总结/">亚信科技 数据库学习day4</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/29/20200529学习总结/" class="archive-article-date">
+  	<time datetime="2020-05-29T03:44:52.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日内容：HTTP相关</p>
+<p>HTTP——HyperText Transfer Protocol——超文本传输协议</p>
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#1%E4%BB%80%E4%B9%88%E6%98%AFhttp">1.什么是HTTP</a></li>
+<li><a href="#2http-%E4%B8%8D%E6%98%AF%E4%BB%80%E4%B9%88">2.HTTP 不是什么</a></li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%980">思考题0</a></li>
+<li><a href="#3%E5%B8%B8%E8%A7%81%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E6%A6%82%E5%BF%B5">3.常见实际应用概念</a><ul>
+<li><a href="#%E4%BA%92%E8%81%94%E7%BD%91">互联网</a></li>
+<li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8">浏览器</a></li>
+<li><a href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8">WEB服务器</a></li>
+<li><a href="#cdn%E5%90%8E%E9%9D%A2%E4%BC%9A%E8%AF%A6%E7%BB%86%E8%AF%B4">CDN（后面会详细说）</a></li>
+<li><a href="#%E7%88%AC%E8%99%AB">爬虫</a></li>
+<li><a href="#html">HTML</a></li>
+<li><a href="#webservice">WebService</a></li>
+<li><a href="#waf">WAF</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%981">思考题1</a></li>
+<li><a href="#4%E5%B8%B8%E8%A7%81%E7%90%86%E8%AE%BA%E5%B1%82%E9%9D%A2%E6%A6%82%E5%BF%B5">4.常见理论层面概念</a><ul>
+<li><a href="#tcpip">TCP/IP</a></li>
+<li><a href="#dns">DNS</a></li>
+<li><a href="#uriurl">URI/URL</a></li>
+<li><a href="#https">HTTPS</a></li>
+<li><a href="#%E4%BB%A3%E7%90%86">代理</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%982">思考题2</a></li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/05/29/20200529学习总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20200528学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -197,6 +297,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今日内容：Mysql的索引细节</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#1-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B">1. 索引的常见类型</a><ul>
+<li><a href="#%E5%93%88%E5%B8%8C%E8%A1%A8">哈希表</a></li>
+<li><a href="#%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84">有序数组</a></li>
+<li><a href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91">二叉搜索树</a></li>
+</ul>
+</li>
+<li><a href="#2innodb-%E7%9A%84%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9E%8Bb%E6%A0%91">2.InnoDB 的索引模型——B+树</a><ul>
+<li><a href="#%E7%B4%A2%E5%BC%95%E7%BB%B4%E6%8A%A4">索引维护</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%981">思考题1</a></li>
+<li><a href="#3%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96">3.索引优化</a><ul>
+<li><a href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95">覆盖索引</a></li>
+<li><a href="#%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E5%8E%9F%E5%88%99">最左前缀原则</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8">索引下推</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%982">思考题2</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
         
           <a class="article-more-a" href="/2020/05/28/20200528学习总结/#more">more >></a>
         
@@ -269,6 +393,23 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今日内容：Mysql的日志系统、事务隔离</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#1mysql%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F">1.Mysql日志系统</a><ul>
+<li><a href="#redo-loginnodb%E4%B8%93%E6%9C%89%E7%9A%84%E8%83%BD%E5%8A%9B">redo log(InnoDB专有的能力)</a></li>
+<li><a href="#binlogserver%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E8%83%BD%E5%8A%9B">binlog(Server层提供的能力)</a></li>
+</ul>
+</li>
+<li><a href="#2-mysql%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB">2. Mysql的事务隔离</a><ul>
+<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7%E4%B8%8E%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">隔离性与隔离级别</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0">事务隔离的实现</a></li>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F">事务启动方式</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
         
           <a class="article-more-a" href="/2020/05/26/20200526学习总结/#more">more >></a>
         
@@ -341,6 +482,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#mysql%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84">Mysql基础架构</a><ul>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E5%99%A8">连接器</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98">查询缓存</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E5%99%A8">分析器</a></li>
+<li><a href="#%E4%BC%98%E5%8C%96%E5%99%A8">优化器</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E5%99%A8">执行器</a></li>
+<li><a href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B">存储过程</a></li>
+<li><a href="#%E8%A7%A6%E5%8F%91%E5%99%A8">触发器</a></li>
+<li><a href="#%E8%A7%86%E5%9B%BE">视图</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95">索引</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5">连接</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
         
           <a class="article-more-a" href="/2020/05/25/20200525学习总结/#more">more >></a>
         
@@ -634,6 +794,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>

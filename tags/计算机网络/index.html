@@ -6,37 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>亚信科技 数据库学习day2 | 菜鸡本鸡</title>
+  <title>Tag: 计算机网络 | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
-<meta name="keywords" content="数据库相关">
-<meta property="og:type" content="article">
-<meta property="og:title" content="亚信科技 数据库学习day2">
-<meta property="og:url" content="http://yoursite.com/2020/05/26/20200526学习总结/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="菜鸡本鸡">
+<meta property="og:url" content="http://yoursite.com/tags/计算机网络/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
-<meta property="og:description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/extra-img/基础架构.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/redolog.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/update流程.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/事务例子.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/回滚日志.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex1.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex2.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex3.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex4.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex5.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex6.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex7.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex8.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex9.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex10.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex11.png">
-<meta property="og:updated_time" content="2020-05-29T07:25:24.195Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="亚信科技 数据库学习day2">
-<meta name="twitter:description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
-<meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.png">
+<meta name="twitter:title" content="菜鸡本鸡">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -196,344 +174,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20200526学习总结" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      亚信科技 数据库学习day2
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/05/29/20200529学习总结/" class="archive-article-date">
+  	<time datetime="2020-05-29T03:44:52.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/05/29/20200529学习总结/">亚信科技 数据库学习day4</a>
     </h1>
   
 
-        
-        <a href="/2020/05/26/20200526学习总结/" class="archive-article-date">
-  	<time datetime="2020-05-26T02:13:51.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今日内容：Mysql的日志系统、事务隔离</p>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
-<ul>
-<li><a href="#1mysql%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F">1.Mysql日志系统</a><ul>
-<li><a href="#redo-loginnodb%E4%B8%93%E6%9C%89%E7%9A%84%E8%83%BD%E5%8A%9B">redo log(InnoDB专有的能力)</a></li>
-<li><a href="#binlogserver%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E8%83%BD%E5%8A%9B">binlog(Server层提供的能力)</a></li>
-</ul>
-</li>
-<li><a href="#2-mysql%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB">2. Mysql的事务隔离</a><ul>
-<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7%E4%B8%8E%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">隔离性与隔离级别</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0">事务隔离的实现</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F">事务启动方式</a></li>
-</ul>
-</li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<a id="more"></a>
-<h2 id="1-Mysql日志系统"><a href="#1-Mysql日志系统" class="headerlink" title="1.Mysql日志系统"></a>1.Mysql日志系统</h2><p>昨天主要针对的是查询语句的执行过程，今天的日志系统是为了解决更新语句的执行流程。然而查询语句经历的，更新语句同样大多也要经历，所以这里还是拿出昨天的基础架构图：</p>
-<p><img src="..\..\..\..\extra-img\基础架构.png" alt="基础架构"></p>
-<p>执行语句前还是要连接数据库(连接器)，还是要进行词法语法分析(分析器)，但是查询缓存会在更新后失效，然后还是要由优化器决定使用哪种索引，最后由执行器进行具体执行。</p>
-<p>然而与查询与流程不一样的是，更新流程涉及到两个重要的日志模块：redo log(重做日志)以及binlog(归档日志)。</p>
-<h3 id="redo-log-InnoDB专有的能力"><a href="#redo-log-InnoDB专有的能力" class="headerlink" title="redo log(InnoDB专有的能力)"></a>redo log(InnoDB专有的能力)</h3><p>可以看作是一块固定大小的”粉板”，负责<strong>暂时</strong>存放更新记录，同时更新内存，等系统比较空闲的时候，再将更新内容更新到磁盘中，其体现为循环结构，且大小固定，如图：</p>
-<p><img src="..\..\..\..\extra-img\redolog.png" alt="redolog"></p>
-<p>write pos是当前记录位置，一边写一边后移，写到第3号文件末尾后就回到0号文件开头，checkpoint是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要确保更新记录已经更新到磁盘中。</p>
-<p>类似循环队列，当write pos追上checkpoint时说明redo log满了，就需要停下来推进一下checkpoint。</p>
-<p><strong>说到这，循环队列判定满的条件为(rear+1)%maxsize=front</strong></p>
-<p>继续正文，redo log可以确保crash-safe，即使程序崩溃了，还是可以通过redo log以及磁盘数据结合来确定最后的数据。</p>
-<h3 id="binlog-Server层提供的能力"><a href="#binlog-Server层提供的能力" class="headerlink" title="binlog(Server层提供的能力)"></a>binlog(Server层提供的能力)</h3><p>前面说过，不同的存储引擎仅对应一个Server，所以显然，binlog是所有引擎都可以用的。</p>
-<p>且在存放内容上，redo log存放的是在某个数据页发生了什么更改，而binlog用来存放更新语句原始逻辑，eg.给ID=2这一行的c字段加1。</p>
-<p>在数据结构上，redo log是循环写的，且空间固定，而binlog可以追加写——binlog文件到一定大小后可以切换到下一个，且不会覆盖之前的日志。</p>
-<p>现在，可以以一个简单例子，看执行器和InnoDB引擎执行update语句时的内部流程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update T set c=c+1 where ID=2;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行器先找ID=2的行，引擎直接用树搜索找到改行，如果该数据页本来就在内存中，则直接返回给执行器，否则从磁盘读到内存，再返回。</li>
-<li>执行器得到返回数据，将c加1，得到新的一行数据，调用引擎接口写入新数据</li>
-<li>引擎将这行更新到内存，同时将更新记录写到redo log中，此时redo log处于prepare状态，然后告知执行器执行完成了，随时可以提交事务</li>
-<li>执行器生成binlog，将binlog写入磁盘</li>
-<li>执行器引用引擎的<strong>提交事务</strong>接口，引擎将刚刚写入的redo log改为commit状态，更新完成。</li>
-</ul>
-<p><img src="..\..\..\..\extra-img\update流程.png" alt="update流程"></p>
-<p>如上图所示，深色表示在执行器中完成，浅色表示在引擎中完成。</p>
-<p>上面的prepare和commit状态，也称之为”两阶段提交“——保证可以让数据库更好的恢复到之前的状态。</p>
-<p>备份恢复流程如下：</p>
-<ul>
-<li>首先，找到最近的一次全量备份，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库； </li>
-<li>然后，从备份的时间点开始，将备份的 binlog 依次取出来，重放到中午误删表之前的那个时刻</li>
-</ul>
-<p>然后再说为什么需要两阶段呢？这里可以反证法，假设在写第二个log时崩溃。</p>
-<ol>
-<li>先写redo log后写binlog：redo log写完则表明更新数据完成，所以即使崩溃，磁盘中存放的c值仍为1。而由于写binlog时崩溃，所以binlog中并没有c+1的记录存在，所以在重放后，c为0，与原库不同。</li>
-<li>先写binlog再写redo log：未写完redo log，所以崩溃后，磁盘中的c值为0，但是在恢复库时，binlog中会有c+1的操作，所以在重放后c值为1，与原库不同</li>
-</ol>
-<p>所以，必须要用两阶段提交，从正面证明：假设在redo log写入更新数据，处于commit状态时就崩溃，显然，binlog没有记录，redo log也没有处于commit状态。所以恢复前后c值均为0；假设在写入binlog时崩溃，由于binlog没记录，redo log未处于commit状态，所以恢复前后c指也均为0。</p>
-<p>从上述显然可以发现，两阶段提交最重要的一点就是保证了redo log在写完后并不立刻更新数据，而是需要附加commit状态才可以。</p>
-<p>redo log由innodb_flush_log_at_trx_commit参数控制，binlog由sync_binlog控制，这两个参数建议都设为1，既可以保证每个事务都会持久化到磁盘，又可以保证Mysql在异常重启后binlog不消失。</p>
-<p>最后探讨一下一天一备份和一周一备份相比，好处是较短的恢复时间——一天一备份最坏情况应用一天的binlog，一周一备份则会用到一周的binlog，会影响系统的对应指标是RTO(恢复目标时间)。不过是高成本换来的。需要根据业务重要性评估。</p>
-<h2 id="2-Mysql的事务隔离"><a href="#2-Mysql的事务隔离" class="headerlink" title="2. Mysql的事务隔离"></a>2. Mysql的事务隔离</h2><p>经典例子——你要给朋友小王转 100 块钱，而此时你的银行卡只有 100元。我如果在转给小王钱这个操作执行完成前再查询余额给其他的人转账，只要我手速够快，就会一直有100元可以转账。</p>
-<p>这就是引入事务的原因——事务就是要保证一组数据库操作，要么全部成功，要么全部失败。Mysql中，事务是在引擎中实现的。</p>
-<h3 id="隔离性与隔离级别"><a href="#隔离性与隔离级别" class="headerlink" title="隔离性与隔离级别"></a>隔离性与隔离级别</h3><p>事务的ACID：</p>
-<ul>
-<li>原子性(不可分割，要么一起成功，要么一起失败)</li>
-<li>一致性(数据完整性必须一致，不会凭空生成或消失数据)</li>
-<li><strong>隔离性</strong></li>
-<li>持久性(一旦事务提交，数据改变是永久性的，即使数据库发生故障也不会对其有任何影响)</li>
-</ul>
-<p>这里重点提隔离性，当数据库中有多个事件同时执行，可能会发生下述问题：</p>
-<ul>
-<li>脏读——读到回滚前的脏数据(比如B+2000的操作在后续流程中回滚，但是回滚前被A读到)</li>
-<li>不可重复读——前后多次读取但是内容不一样(比如A事务事先读取一条数据，但是在执行逻辑的时候B事务改变了该数据的<strong>值</strong>，导致A再次读取时与第一次不一致)</li>
-<li>幻读(比如A事先读到M条数据，但是在执行逻辑的时候B事务改变了该数据的<strong>数量</strong>，导致A再次读取时数据数量与第一次不一致)</li>
-</ul>
-<p>为了解决这些问题，隔离级别的概念应运而生，不过显然，隔离级别越高，效率也会越低，所以SQL提供了四种隔离级别：</p>
-<ul>
-<li>读未提交：一个事务还没提交时，它的变更就能被别的事务看到。</li>
-<li>读提交：一个事务提交之后，它的变更就能被别的事务看到。</li>
-<li>可重复读：一个事务执行过程中看到的数据，总是和这个事务启动时看到数据是一致的。当然，未提交变更也是不能被别的事务看到的。(比如校对本月银行账单时，不希望用户发生新交易就影响账单校对结果，就可以用此隔离级别)</li>
-<li>串行化：读上读锁，写上写锁，遇到读写锁冲突时，后来的事务必须要等先来事务完成后才可继续执行。</li>
-</ul>
-<p>下面用一个例子加以理解</p>
-<p><img src="..\..\..\..\extra-img\事务例子.png" alt="事务例子"></p>
-<p>在上述四种条件下，分别求V1，V2，V3。</p>
-<ul>
-<li>读未提交：V1=2(没等B提交就可以查到更新数据)，V2=2，V3=2</li>
-<li>读提交：V1=1(等B提交后才可以查到更新数据)，V2=2，V3=2</li>
-<li>可重复读：V1=1，V2=1(执行期间两次查询结果一致)，V3=2</li>
-<li>串行化：V1=1，V2=1(直到事件A提交，事件B才可以继续执行)，V3=2</li>
-</ul>
-<p>实现上，数据库会创建一个视图，以视图逻辑结果为准，在”可重复读“隔离级别下，这个视图会在事务启动后创建，整个事务存在时都用这个视图，在”读提交“隔离级别下，这个视图会在<strong>每个SQL语句开始执行时</strong>创建。但是，”串行化”是直接加锁实现，”读未提交”直接返回记录新值，没用到视图。</p>
-<p>Oracle中默认隔离级别为”读提交“，所以在迁移时一定要将Mysql的隔离级别也设置为此值——transaction-isolation的值设置为READ-COMMITTED即可，可以用show variables查看。</p>
-<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><p>展开说明可重复读。</p>
-<p>Mysql会在每条记录更新同时记录一条回滚操作。新值可以通过回滚得到前一个状态的值。</p>
-<p>假设一个值从 1 被按顺序改成了 2、3、4，在回滚日志列表里面就会有类似下面的回滚日志。</p>
-<p><img src="..\..\..\..\extra-img\回滚日志.png" alt="回滚日志"></p>
-<p>当前值是4，但是不同时刻启动的事务会返回不同的read-view(视图)，在A，B，C中，值分别为1，2，4。同个值同时存在多个版本，就是数据库的多版本并发(MVCC)，对于A来说，要想得到1，必须经历所有的回滚操作才可以得到。同时，即使现在有另外一个事务正在将 4 改成 5，这个事务跟 read-view A、B、C 对应的事务是不会冲突的。</p>
-<p>回滚日志删除时机：当系统里没有比这条回滚日志更早的 read-view 的时候。</p>
-<p>尽力不要使用长事务！因为长事务会导致里面存在很老的事务视图。在事务提交之前，数据库里它可能用到的很多回滚操作都必须保留，导致大量占用存储空间。</p>
-<p>比如说一个很长的事务A，调用了read-view A，直到7，8个小时过去，A都没有commit，但是在这期间，B，C，D，E…等等事务都对值进行了更改，但是都是很短的事务，但是由于A没有commit，这些事务更新数据产生的所有回滚日志都会被保留。所以不要使用长事务！</p>
-<p>此外，长事务还占用锁资源，甚至拖垮整个库。</p>
-<h3 id="事务启动方式"><a href="#事务启动方式" class="headerlink" title="事务启动方式"></a>事务启动方式</h3><p>Mysql的事务启动方式有两种：</p>
-<ul>
-<li>显式启动（建议！），begin或start transaction，配套提交是commit，回滚是rollback</li>
-<li>set autocommit=0，会将这个线程的自动提交关掉，意味着如果只执行一个select语句，这个事务就启动了，并且不会自动提交，这个事务会持续存在直到主动执行commit或rollback语句，或者断开连接。</li>
-</ul>
-<p>有些客户端在连接成功后会先执行set autocommit=0，如果是长连接，就会导致意外的长事务，所以建议使用set autocommit=1，通过显式语句启动事务。</p>
-<p>但是这样会导致每个事务启动前都要执行一次”begin”操作，所以建议提交使用commit work and chain，表示提交事务并自动启动下一个事务，省去了再次执行begin的开销，同时带来的好处是从程序开发的角度，可以明确地知道每个语句是否处于事务中。</p>
-<p>为了方便理解，以下为自己的例子：</p>
-<p>set autocommit=0时，插入并不能查到结果，需要commit后才可以查到结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex1.png" alt="ex1"></p>
-<p>下图第一句是commit前的查询，第二句是commit后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex2.png" alt="ex2"></p>
-<p>set autocommit=1时，插入即可查到结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex3.png" alt="ex3"></p>
-<p><img src="..\..\..\..\extra-img\ex4.png" alt="ex4"></p>
-<p>而在begin或者start transaction后，则会体现于set autocommit一样的结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex5.png" alt="ex5"></p>
-<p>下图第一句是commit前的查询，第二句是commit后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex6.png" alt="ex6"></p>
-<p>但是用完commit后，就又回到了第三张与第四张图的状态，所以也就存在要重复使用begin的问题，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex7.png" alt="ex7"></p>
-<p><img src="..\..\..\..\extra-img\ex8.png" alt="ex8"></p>
-<p>所以就要用到commit work and chain字段，结果如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex9.png" alt="ex9"></p>
-<p>下图第一句是commit work and chain前的查询，第二句是commit work and chain后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex10.png" alt="ex10"></p>
-<p>发现在使用后就好像自动用了一个begin一样，最后我输入了commit将结果更新到库中，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex11.png" alt="ex11"></p>
-<p>最后，查询超过60s的长事务：information_schema 库的 innodb_trx表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from information_schema.innodb_trx where TIME_TO_SEC(timediff(now(),trx_started))&gt;60</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>在此叩谢<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/wechat.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/26/20200526学习总结/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/05/28/20200528学习总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          亚信科技 数据库学习day3
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/05/25/20200525学习总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">亚信科技 数据库学习day1</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20200526学习总结" data-title="亚信科技 数据库学习day2" data-url="http://yoursite.com/2020/05/26/20200526学习总结/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="20200526学习总结"></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cyucd0aLb",
-        conf: "547e882b25af018112302b489d2d15b0"
-    });
-</script>
-
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -556,9 +250,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

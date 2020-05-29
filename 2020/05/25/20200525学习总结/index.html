@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>亚信科技 数据库学习day1 | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
+  <meta name="description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）   Table of Contents  generated with DocToc  Mysql基础架构 连接器 查询缓存 分析器 优化器 执行器 存储过程 触发器 视图 索引 连接">
 <meta name="keywords" content="数据库相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="亚信科技 数据库学习day1">
 <meta property="og:url" content="http://yoursite.com/2020/05/25/20200525学习总结/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
-<meta property="og:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
+<meta property="og:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）   Table of Contents  generated with DocToc  Mysql基础架构 连接器 查询缓存 分析器 优化器 执行器 存储过程 触发器 视图 索引 连接">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/extra-img/基础架构.png">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子2.jpg">
 <meta property="og:image" content="http://yoursite.com/extra-img/触发器例子3.jpg">
-<meta property="og:updated_time" content="2020-05-25T15:07:45.960Z">
+<meta property="og:updated_time" content="2020-05-29T07:25:59.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="亚信科技 数据库学习day1">
-<meta name="twitter:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）">
+<meta name="twitter:description" content="今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）   Table of Contents  generated with DocToc  Mysql基础架构 连接器 查询缓存 分析器 优化器 执行器 存储过程 触发器 视图 索引 连接">
 <meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.png">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
@@ -205,6 +205,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今日内容：Mysql的基础架构，以及学习过程中遗忘的基础知识（存储过程、触发器、视图、索引、连结）</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#mysql%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84">Mysql基础架构</a><ul>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E5%99%A8">连接器</a></li>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E7%BC%93%E5%AD%98">查询缓存</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E5%99%A8">分析器</a></li>
+<li><a href="#%E4%BC%98%E5%8C%96%E5%99%A8">优化器</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E5%99%A8">执行器</a></li>
+<li><a href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B">存储过程</a></li>
+<li><a href="#%E8%A7%A6%E5%8F%91%E5%99%A8">触发器</a></li>
+<li><a href="#%E8%A7%86%E5%9B%BE">视图</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95">索引</a></li>
+<li><a href="#%E8%BF%9E%E6%8E%A5">连接</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <a id="more"></a>
 <h2 id="Mysql基础架构"><a href="#Mysql基础架构" class="headerlink" title="Mysql基础架构"></a>Mysql基础架构</h2><p><img src="..\..\..\..\extra-img\基础架构.png" alt="基础架构"></p>
 <p>可以看到，Mysql可以分为Server以及存储引擎两部分，Server包括连接器、查询缓存、分析器、优化器以及执行器等，其中包括Mysql所有的内置函数，且执行跨存储引擎的功能，比如存储过程、触发器、视图等。</p>
@@ -582,6 +601,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>

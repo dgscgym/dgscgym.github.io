@@ -6,37 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>亚信科技 数据库学习day2 | 菜鸡本鸡</title>
+  <title>亚信科技 数据库学习day4 | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
-<meta name="keywords" content="数据库相关">
+  <meta name="description" content="今日内容：HTTP相关 HTTP——HyperText Transfer Protocol——超文本传输协议 Table of Contents  generated with DocToc  1.什么是HTTP 2.HTTP 不是什么 思考题0 3.常见实际应用概念 互联网 浏览器 WEB服务器 CDN（后面会详细说） 爬虫 HTML WebService WAF   思考题1 4.常见理论层面">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="亚信科技 数据库学习day2">
-<meta property="og:url" content="http://yoursite.com/2020/05/26/20200526学习总结/index.html">
+<meta property="og:title" content="亚信科技 数据库学习day4">
+<meta property="og:url" content="http://yoursite.com/2020/05/29/20200529学习总结/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
-<meta property="og:description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
+<meta property="og:description" content="今日内容：HTTP相关 HTTP——HyperText Transfer Protocol——超文本传输协议 Table of Contents  generated with DocToc  1.什么是HTTP 2.HTTP 不是什么 思考题0 3.常见实际应用概念 互联网 浏览器 WEB服务器 CDN（后面会详细说） 爬虫 HTML WebService WAF   思考题1 4.常见理论层面">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/extra-img/基础架构.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/redolog.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/update流程.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/事务例子.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/回滚日志.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex1.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex2.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex3.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex4.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex5.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex6.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex7.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex8.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex9.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex10.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/ex11.png">
-<meta property="og:updated_time" content="2020-05-29T07:25:24.195Z">
+<meta property="og:image" content="http://yoursite.com/extra-img/http.png">
+<meta property="og:updated_time" content="2020-05-29T07:24:27.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="亚信科技 数据库学习day2">
-<meta name="twitter:description" content="今日内容：Mysql的日志系统、事务隔离   Table of Contents  generated with DocToc  1.Mysql日志系统 redo log(InnoDB专有的能力) binlog(Server层提供的能力)   2. Mysql的事务隔离 隔离性与隔离级别 事务隔离的实现 事务启动方式">
-<meta name="twitter:image" content="http://yoursite.com/extra-img/基础架构.png">
+<meta name="twitter:title" content="亚信科技 数据库学习day4">
+<meta name="twitter:description" content="今日内容：HTTP相关 HTTP——HyperText Transfer Protocol——超文本传输协议 Table of Contents  generated with DocToc  1.什么是HTTP 2.HTTP 不是什么 思考题0 3.常见实际应用概念 互联网 浏览器 WEB服务器 CDN（后面会详细说） 爬虫 HTML WebService WAF   思考题1 4.常见理论层面">
+<meta name="twitter:image" content="http://yoursite.com/extra-img/http.png">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -196,156 +181,156 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20200526学习总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20200529学习总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      亚信科技 数据库学习day2
+      亚信科技 数据库学习day4
     </h1>
   
 
         
-        <a href="/2020/05/26/20200526学习总结/" class="archive-article-date">
-  	<time datetime="2020-05-26T02:13:51.402Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-26</time>
+        <a href="/2020/05/29/20200529学习总结/" class="archive-article-date">
+  	<time datetime="2020-05-29T03:44:52.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今日内容：Mysql的日志系统、事务隔离</p>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+        <p>今日内容：HTTP相关</p>
+<p>HTTP——HyperText Transfer Protocol——超文本传输协议</p>
 <p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
 <ul>
-<li><a href="#1mysql%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F">1.Mysql日志系统</a><ul>
-<li><a href="#redo-loginnodb%E4%B8%93%E6%9C%89%E7%9A%84%E8%83%BD%E5%8A%9B">redo log(InnoDB专有的能力)</a></li>
-<li><a href="#binlogserver%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E8%83%BD%E5%8A%9B">binlog(Server层提供的能力)</a></li>
+<li><a href="#1%E4%BB%80%E4%B9%88%E6%98%AFhttp">1.什么是HTTP</a></li>
+<li><a href="#2http-%E4%B8%8D%E6%98%AF%E4%BB%80%E4%B9%88">2.HTTP 不是什么</a></li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%980">思考题0</a></li>
+<li><a href="#3%E5%B8%B8%E8%A7%81%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E6%A6%82%E5%BF%B5">3.常见实际应用概念</a><ul>
+<li><a href="#%E4%BA%92%E8%81%94%E7%BD%91">互联网</a></li>
+<li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8">浏览器</a></li>
+<li><a href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8">WEB服务器</a></li>
+<li><a href="#cdn%E5%90%8E%E9%9D%A2%E4%BC%9A%E8%AF%A6%E7%BB%86%E8%AF%B4">CDN（后面会详细说）</a></li>
+<li><a href="#%E7%88%AC%E8%99%AB">爬虫</a></li>
+<li><a href="#html">HTML</a></li>
+<li><a href="#webservice">WebService</a></li>
+<li><a href="#waf">WAF</a></li>
 </ul>
 </li>
-<li><a href="#2-mysql%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB">2. Mysql的事务隔离</a><ul>
-<li><a href="#%E9%9A%94%E7%A6%BB%E6%80%A7%E4%B8%8E%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">隔离性与隔离级别</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0">事务隔离的实现</a></li>
-<li><a href="#%E4%BA%8B%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F">事务启动方式</a></li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%981">思考题1</a></li>
+<li><a href="#4%E5%B8%B8%E8%A7%81%E7%90%86%E8%AE%BA%E5%B1%82%E9%9D%A2%E6%A6%82%E5%BF%B5">4.常见理论层面概念</a><ul>
+<li><a href="#tcpip">TCP/IP</a></li>
+<li><a href="#dns">DNS</a></li>
+<li><a href="#uriurl">URI/URL</a></li>
+<li><a href="#https">HTTPS</a></li>
+<li><a href="#%E4%BB%A3%E7%90%86">代理</a></li>
 </ul>
 </li>
+<li><a href="#%E6%80%9D%E8%80%83%E9%A2%982">思考题2</a></li>
 </ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <a id="more"></a>
-<h2 id="1-Mysql日志系统"><a href="#1-Mysql日志系统" class="headerlink" title="1.Mysql日志系统"></a>1.Mysql日志系统</h2><p>昨天主要针对的是查询语句的执行过程，今天的日志系统是为了解决更新语句的执行流程。然而查询语句经历的，更新语句同样大多也要经历，所以这里还是拿出昨天的基础架构图：</p>
-<p><img src="..\..\..\..\extra-img\基础架构.png" alt="基础架构"></p>
-<p>执行语句前还是要连接数据库(连接器)，还是要进行词法语法分析(分析器)，但是查询缓存会在更新后失效，然后还是要由优化器决定使用哪种索引，最后由执行器进行具体执行。</p>
-<p>然而与查询与流程不一样的是，更新流程涉及到两个重要的日志模块：redo log(重做日志)以及binlog(归档日志)。</p>
-<h3 id="redo-log-InnoDB专有的能力"><a href="#redo-log-InnoDB专有的能力" class="headerlink" title="redo log(InnoDB专有的能力)"></a>redo log(InnoDB专有的能力)</h3><p>可以看作是一块固定大小的”粉板”，负责<strong>暂时</strong>存放更新记录，同时更新内存，等系统比较空闲的时候，再将更新内容更新到磁盘中，其体现为循环结构，且大小固定，如图：</p>
-<p><img src="..\..\..\..\extra-img\redolog.png" alt="redolog"></p>
-<p>write pos是当前记录位置，一边写一边后移，写到第3号文件末尾后就回到0号文件开头，checkpoint是当前要擦除的位置，也是往后推移并且循环的，擦除记录前要确保更新记录已经更新到磁盘中。</p>
-<p>类似循环队列，当write pos追上checkpoint时说明redo log满了，就需要停下来推进一下checkpoint。</p>
-<p><strong>说到这，循环队列判定满的条件为(rear+1)%maxsize=front</strong></p>
-<p>继续正文，redo log可以确保crash-safe，即使程序崩溃了，还是可以通过redo log以及磁盘数据结合来确定最后的数据。</p>
-<h3 id="binlog-Server层提供的能力"><a href="#binlog-Server层提供的能力" class="headerlink" title="binlog(Server层提供的能力)"></a>binlog(Server层提供的能力)</h3><p>前面说过，不同的存储引擎仅对应一个Server，所以显然，binlog是所有引擎都可以用的。</p>
-<p>且在存放内容上，redo log存放的是在某个数据页发生了什么更改，而binlog用来存放更新语句原始逻辑，eg.给ID=2这一行的c字段加1。</p>
-<p>在数据结构上，redo log是循环写的，且空间固定，而binlog可以追加写——binlog文件到一定大小后可以切换到下一个，且不会覆盖之前的日志。</p>
-<p>现在，可以以一个简单例子，看执行器和InnoDB引擎执行update语句时的内部流程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update T set c=c+1 where ID=2;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行器先找ID=2的行，引擎直接用树搜索找到改行，如果该数据页本来就在内存中，则直接返回给执行器，否则从磁盘读到内存，再返回。</li>
-<li>执行器得到返回数据，将c加1，得到新的一行数据，调用引擎接口写入新数据</li>
-<li>引擎将这行更新到内存，同时将更新记录写到redo log中，此时redo log处于prepare状态，然后告知执行器执行完成了，随时可以提交事务</li>
-<li>执行器生成binlog，将binlog写入磁盘</li>
-<li>执行器引用引擎的<strong>提交事务</strong>接口，引擎将刚刚写入的redo log改为commit状态，更新完成。</li>
-</ul>
-<p><img src="..\..\..\..\extra-img\update流程.png" alt="update流程"></p>
-<p>如上图所示，深色表示在执行器中完成，浅色表示在引擎中完成。</p>
-<p>上面的prepare和commit状态，也称之为”两阶段提交“——保证可以让数据库更好的恢复到之前的状态。</p>
-<p>备份恢复流程如下：</p>
-<ul>
-<li>首先，找到最近的一次全量备份，如果你运气好，可能就是昨天晚上的一个备份，从这个备份恢复到临时库； </li>
-<li>然后，从备份的时间点开始，将备份的 binlog 依次取出来，重放到中午误删表之前的那个时刻</li>
-</ul>
-<p>然后再说为什么需要两阶段呢？这里可以反证法，假设在写第二个log时崩溃。</p>
-<ol>
-<li>先写redo log后写binlog：redo log写完则表明更新数据完成，所以即使崩溃，磁盘中存放的c值仍为1。而由于写binlog时崩溃，所以binlog中并没有c+1的记录存在，所以在重放后，c为0，与原库不同。</li>
-<li>先写binlog再写redo log：未写完redo log，所以崩溃后，磁盘中的c值为0，但是在恢复库时，binlog中会有c+1的操作，所以在重放后c值为1，与原库不同</li>
+<h2 id="1-什么是HTTP"><a href="#1-什么是HTTP" class="headerlink" title="1.什么是HTTP"></a>1.什么是HTTP</h2><p>是个协议——必有两个或多个参与者；是参与者之间的行为约定和规范。</p>
+<p><strong>HTTP用计算机能够理解的语言建立了一种计算机之间交流通信的规范，以及相关的各种控制和错误处理的方式。</strong></p>
+<p>可以传输——可以<strong>双向</strong>传输数据，请求方与响应方，其中间允许<strong>接力</strong>。</p>
+<p><strong>HTTP在计算机世界里专门用来两点间传输数据的约定和规范，所以不能被用来广播、寻址、路由、数据完整性！（TCP负责数据完整性、IP负责寻址、路由）</strong></p>
+<p>超文本——传输的不是TCP/UDP等底层协议里面的二进制包，而是完整的“超越了普通文本的文本”，是文字，图片，音频和视频等的混合体，还有超链接，可以从一个超文本跳跃到另一个超文本。<strong>HTML</strong></p>
+<p>总结以上三个方面，<strong>HTTP为一个在是计算机世界里专门在两点之间传输文字、图片、音视频等超文本数据的约定和规范。</strong></p>
+<h2 id="2-HTTP-不是什么"><a href="#2-HTTP-不是什么" class="headerlink" title="2.HTTP 不是什么"></a>2.HTTP 不是什么</h2><p>其不存在实体——不是浏览器、不是应用程序、不是操作系统、更不是服务器…</p>
+<p>不是编程语言、不是HTML、更不是一个孤立的协议、…</p>
+<p>所以，<strong>HTTP是构建互联网的重要基础技术，没有实体，依赖其他的技术实现、同时许多技术也依赖于它。</strong></p>
+<p>感谢大神的整理，HTTP关联各种知识点如下所示：</p>
+<p><img src="..\..\..\..\extra-img\http.png" alt="http"></p>
+<p>左边是理论，右边是实际应用。</p>
+<h2 id="思考题0"><a href="#思考题0" class="headerlink" title="思考题0"></a>思考题0</h2><p>HTTP 是用于从互联网服务器传输超文本到本地浏览器的协议——这一说法对么？</p>
+<p>不对，HTTP是个双向协议，没有指定方向，可以从客户端到服务端，也可以服务端到客户端，不能只描述成服务器传输到客户端的协议。</p>
+<h2 id="3-常见实际应用概念"><a href="#3-常见实际应用概念" class="headerlink" title="3.常见实际应用概念"></a>3.常见实际应用概念</h2><h3 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h3><p>由许许多多的小网络连接而成——可能是<strong>局域网</strong>、也有可能是<strong>广域网</strong>、甚至是用热点构成的移动网络…</p>
+<p>互联网——Internet，基于<strong>HTTP协议</strong>，能力也被限制在此协议之内，通常的“上网”只是访问互联网的子集WWW（万维网），此外，互联网中还有电子邮件、BT、FTP、SSH、即时聊天软件等等资源，需要各自专有协议访问。</p>
+<p>不过HTTP协议很灵活，所以很多资源也可以包装成HTTP使用——电子邮件网页版、微信网页版…</p>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><p>Web browser——访问 World Wide Web中的资源的程序。</p>
+<p>作为HTTP协议的<strong>请求方</strong>（被称之为<strong>访问代理</strong>，作为访问者的代理发起HTTP请求，不引起混淆时可以称之为<strong>客户端</strong>），使用HTTP协议获得网络上各种资源。</p>
+<p>为了更好观看，其中集成了额外功能——HTML排版引擎用于展示页面、JavaScript实现动态化、开发者工具用来调试…</p>
+<h3 id="WEB服务器"><a href="#WEB服务器" class="headerlink" title="WEB服务器"></a>WEB服务器</h3><p>作为HTTP协议的<strong>应答方</strong>，手中把控绝大部分网络资源。</p>
+<p>有两个层面的含义——硬件与软件。</p>
+<p>硬件：物理形式或者“云”的形式存在的机器，大多情况下是以反向代理以及负载均衡等技术组成的庞大集群，从外界看仍为一台机器，但是这个形象是虚拟的。</p>
+<p>软件：提供WEB服务的应用程序，通常运行在硬件含义的服务器上。利用强大的硬件能力响应海量的客户端HTTP请求、处理磁盘上的静态文件，或者将请求转发给Tomcat、Node.js等业务应用，返回动态信息。</p>
+<p>服务器少得多，Apache（老牌，功能完善）、Nginx（高性能、稳定、易于扩展）、IIS、Jetty/Tomcat（后两个性能低，互联网上应用很少）等…</p>
+<h3 id="CDN（后面会详细说）"><a href="#CDN（后面会详细说）" class="headerlink" title="CDN（后面会详细说）"></a>CDN（后面会详细说）</h3><p>浏览器不会直连到服务器，其中一个重要角色即为CDN</p>
+<p>Content Delivery Network——<strong>内容分发网络</strong></p>
+<p>应用了HTTP协议里的缓存和代理技术，代替源站响应客户端请求，如果算法优秀，就可以尽可能找到离用户近的节点，大幅度减少响应时间。</p>
+<p>应用了HTTP协议里的缓存和代理技术，<strong>代替</strong>源站响应客户端请求，如果算法优秀，就可以尽可能找到离用户近的节点，大幅度减少响应时间。</p>
+<p>CDN是重要基础设施。除了最基本的网络加速外，还提供负载均衡、安全防护、边缘计算、跨运营商网络等功能。极大增强源站服务器的服务能力。</p>
+<h3 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h3><p>另一类用户代理。</p>
+<p>自动访问Web资源的应用程序。</p>
+<p>绝大多数是各大搜索引擎放出来的，抓取网页存入庞大数据库，建立关键字索引，这样我们才可以快速搜索到互联网角落的页面。</p>
+<p>弊端：过度消耗网络资源、占用服务器和带宽、影响网站对真实数据分析、甚至导致敏感信息泄露。</p>
+<p>怎么解决？——反爬虫技术——“君子协定”，robots.txt，约定哪些该爬，哪些不该爬；验证码也是反爬虫手段。</p>
+<p>爬虫与反爬虫用到的都是HTTP以及HTML两大基础技术。</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>HTML——超文本标记语言。描述超文本页面，用标签定义文字、图片、资源，最终渲染出可视化页面。</p>
+<p>标准：HTML4和HTML5。广义上HTML是HTML，CSS以及JavaScript的结合，可以实现比静态页面更丰富的动态页面。</p>
+<h3 id="WebService"><a href="#WebService" class="headerlink" title="WebService"></a>WebService</h3><p>由W3C定义的应用服务开发规范，使用client-server主从架构。</p>
+<p>通常使用WSDL定义服务接口，使用HTTP协议传输XML或者SOAP信息，是基于HTTP的服务架构技术。</p>
+<p>既可以运行在内网，也可以在适当保护后运行在外网。</p>
+<p>因为使用HTTP传输，所以Webservice架构中服务器可以用不同操作系统或者编程语言开发。</p>
+<p>eg.客户端用Windows+C#，服务端用Linux+Java</p>
+<h3 id="WAF"><a href="#WAF" class="headerlink" title="WAF"></a>WAF</h3><p>网络应用防火墙，应用层防火墙，检测HTTP流量，是防护Web应用的安全技术。</p>
+<p>位于Web服务器之前，可以阻止SQL注入、跨站脚本等攻击</p>
+<p>eg.ModSecurity，可以完全集成在Apache或者Nginx中</p>
+<h2 id="思考题1"><a href="#思考题1" class="headerlink" title="思考题1"></a>思考题1</h2><ol>
+<li><p>CDN对待浏览器和爬虫时会有差异么？</p>
+<p>没有，因为爬虫本质也是对Web资源的访问，且对于爬虫的识别不会100%准确，所以CDN只会计算实际采用多少资源，而不会管其中有多少来自爬虫</p>
+</li>
+<li><p>WebService与Web Server如何区别？</p>
+<p>前者是网络服务实体，后者是Web服务器，前者包含后者。</p>
+</li>
 </ol>
-<p>所以，必须要用两阶段提交，从正面证明：假设在redo log写入更新数据，处于commit状态时就崩溃，显然，binlog没有记录，redo log也没有处于commit状态。所以恢复前后c值均为0；假设在写入binlog时崩溃，由于binlog没记录，redo log未处于commit状态，所以恢复前后c指也均为0。</p>
-<p>从上述显然可以发现，两阶段提交最重要的一点就是保证了redo log在写完后并不立刻更新数据，而是需要附加commit状态才可以。</p>
-<p>redo log由innodb_flush_log_at_trx_commit参数控制，binlog由sync_binlog控制，这两个参数建议都设为1，既可以保证每个事务都会持久化到磁盘，又可以保证Mysql在异常重启后binlog不消失。</p>
-<p>最后探讨一下一天一备份和一周一备份相比，好处是较短的恢复时间——一天一备份最坏情况应用一天的binlog，一周一备份则会用到一周的binlog，会影响系统的对应指标是RTO(恢复目标时间)。不过是高成本换来的。需要根据业务重要性评估。</p>
-<h2 id="2-Mysql的事务隔离"><a href="#2-Mysql的事务隔离" class="headerlink" title="2. Mysql的事务隔离"></a>2. Mysql的事务隔离</h2><p>经典例子——你要给朋友小王转 100 块钱，而此时你的银行卡只有 100元。我如果在转给小王钱这个操作执行完成前再查询余额给其他的人转账，只要我手速够快，就会一直有100元可以转账。</p>
-<p>这就是引入事务的原因——事务就是要保证一组数据库操作，要么全部成功，要么全部失败。Mysql中，事务是在引擎中实现的。</p>
-<h3 id="隔离性与隔离级别"><a href="#隔离性与隔离级别" class="headerlink" title="隔离性与隔离级别"></a>隔离性与隔离级别</h3><p>事务的ACID：</p>
+<h2 id="4-常见理论层面概念"><a href="#4-常见理论层面概念" class="headerlink" title="4.常见理论层面概念"></a>4.常见理论层面概念</h2><h3 id="TCP-IP"><a href="#TCP-IP" class="headerlink" title="TCP/IP"></a>TCP/IP</h3><p>TCP+IP的统称。</p>
+<p>IP协议——Internet Protocol的缩写，主要目的是解决寻址以及路由问题，以及如何在两点间传送数据包。用IP地址定位每一台计算机。现在大部分是IPv4地址，有2^32个地址，现在已经捉襟见肘，所以现在有IPv6版本，8组用：分割的数字，2^128个。</p>
+<p>TCP协议——Transmission Control Protocol的缩写，意思是传输控制协议，位于IP协议之上，基于IP协议提供的<strong>可靠的，字节流形式</strong>通信，是HTTP得以实现的基础。</p>
+<p>可靠保证数据不丢，字节流保证数据完整。所以TCP两端可以如同操作文件一样访问传输数据，就像读写一个密闭管道里“流动”的字节。</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>域名系统——用有意义的名字代替IP地址。</p>
+<p>DNS中将域名又称为“主机名”，为了更好标记不同国家或组织的主机让名字更好记，所以被设计成了有层次的结构。（<a href="http://www.uestc.edu.cn，edu表示教育机构、cn代表国家）" target="_blank" rel="noopener">www.uestc.edu.cn，edu表示教育机构、cn代表国家）</a></p>
+<p>那如何在访问名字的时候映射到IP地址进行访问呢？——“域名解析”，从根DNS，顶级DNS、权威DNS到更小的本地DNS，逐层递归来实现。</p>
+<h3 id="URI-URL"><a href="#URI-URL" class="headerlink" title="URI/URL"></a>URI/URL</h3><p>URI——统一资源标识符，能够唯一标记互联网资源。</p>
+<p>URL——统一资源定位符，是URI的子集，但是两者几乎相同，差异不大，不会严格区分</p>
+<p>URL例子如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://nginx.org/en/download.html</span><br></pre></td></tr></table></figure>
+<p>由如下三个部分组成：</p>
+<ol>
+<li>协议名：访问该资源应该使用的协议——HTTP</li>
+<li>主机名：主机标记，可以是域名可以是IP地址——nginx.org</li>
+<li>路径：资源在主机的位置——/en/download.html</li>
+</ol>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>加密的HTTP，运行在SSL/TLS上的HTTP</p>
+<p>SSL/TLS是负责加密通信的安全协议，建立在TCP/IP之上，也是个可靠传输协议，可被用作HTTP的下层。</p>
+<p>所以HTTPS=HTTP+SSL/TSL+TCL/IP。</p>
+<p>SSL是Secure Socket Layer，3.0版本改名为TLS（Transport Layer Security），SSL结合了对称加密，非对称加密，摘要算法，数字签名，数字证书等技术，可以在不安全环境中为通信双方创造一个秘密安全的传输通道。</p>
+<h3 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h3><p>是HTTP协议中请求方和应答方中间的环节，称之为中转站，既可以转发客户端请求，也可以转发服务端应答。</p>
+<p>分为4类：</p>
 <ul>
-<li>原子性(不可分割，要么一起成功，要么一起失败)</li>
-<li>一致性(数据完整性必须一致，不会凭空生成或消失数据)</li>
-<li><strong>隔离性</strong></li>
-<li>持久性(一旦事务提交，数据改变是永久性的，即使数据库发生故障也不会对其有任何影响)</li>
+<li>匿名代理：外界只能看到代理服务器</li>
+<li>透明代理：外界既能看到客户端，也能看到代理</li>
+<li>正向代理：靠近客户端，代表客户端向服务器发送请求</li>
+<li>反向代理：靠近服务器，代表服务器响应客户端请求</li>
 </ul>
-<p>这里重点提隔离性，当数据库中有多个事件同时执行，可能会发生下述问题：</p>
+<p>CDN实际就是一种透明代理，通常扮演透明代理以及反向代理的角色。</p>
+<p>因为代理插在两端之间，可以做很多事情：</p>
 <ul>
-<li>脏读——读到回滚前的脏数据(比如B+2000的操作在后续流程中回滚，但是回滚前被A读到)</li>
-<li>不可重复读——前后多次读取但是内容不一样(比如A事务事先读取一条数据，但是在执行逻辑的时候B事务改变了该数据的<strong>值</strong>，导致A再次读取时与第一次不一致)</li>
-<li>幻读(比如A事先读到M条数据，但是在执行逻辑的时候B事务改变了该数据的<strong>数量</strong>，导致A再次读取时数据数量与第一次不一致)</li>
+<li>负载均衡：访问请求均匀分散到多台机器，实现访问集群化。</li>
+<li>内容缓存：暂存上下行数据，减轻后端压力</li>
+<li>安全防护：隐匿IP，部署WAF抵御网络攻击、保护被代理机器</li>
+<li>数据处理：提供压缩、加密等额外功能。</li>
 </ul>
-<p>为了解决这些问题，隔离级别的概念应运而生，不过显然，隔离级别越高，效率也会越低，所以SQL提供了四种隔离级别：</p>
-<ul>
-<li>读未提交：一个事务还没提交时，它的变更就能被别的事务看到。</li>
-<li>读提交：一个事务提交之后，它的变更就能被别的事务看到。</li>
-<li>可重复读：一个事务执行过程中看到的数据，总是和这个事务启动时看到数据是一致的。当然，未提交变更也是不能被别的事务看到的。(比如校对本月银行账单时，不希望用户发生新交易就影响账单校对结果，就可以用此隔离级别)</li>
-<li>串行化：读上读锁，写上写锁，遇到读写锁冲突时，后来的事务必须要等先来事务完成后才可继续执行。</li>
-</ul>
-<p>下面用一个例子加以理解</p>
-<p><img src="..\..\..\..\extra-img\事务例子.png" alt="事务例子"></p>
-<p>在上述四种条件下，分别求V1，V2，V3。</p>
-<ul>
-<li>读未提交：V1=2(没等B提交就可以查到更新数据)，V2=2，V3=2</li>
-<li>读提交：V1=1(等B提交后才可以查到更新数据)，V2=2，V3=2</li>
-<li>可重复读：V1=1，V2=1(执行期间两次查询结果一致)，V3=2</li>
-<li>串行化：V1=1，V2=1(直到事件A提交，事件B才可以继续执行)，V3=2</li>
-</ul>
-<p>实现上，数据库会创建一个视图，以视图逻辑结果为准，在”可重复读“隔离级别下，这个视图会在事务启动后创建，整个事务存在时都用这个视图，在”读提交“隔离级别下，这个视图会在<strong>每个SQL语句开始执行时</strong>创建。但是，”串行化”是直接加锁实现，”读未提交”直接返回记录新值，没用到视图。</p>
-<p>Oracle中默认隔离级别为”读提交“，所以在迁移时一定要将Mysql的隔离级别也设置为此值——transaction-isolation的值设置为READ-COMMITTED即可，可以用show variables查看。</p>
-<h3 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h3><p>展开说明可重复读。</p>
-<p>Mysql会在每条记录更新同时记录一条回滚操作。新值可以通过回滚得到前一个状态的值。</p>
-<p>假设一个值从 1 被按顺序改成了 2、3、4，在回滚日志列表里面就会有类似下面的回滚日志。</p>
-<p><img src="..\..\..\..\extra-img\回滚日志.png" alt="回滚日志"></p>
-<p>当前值是4，但是不同时刻启动的事务会返回不同的read-view(视图)，在A，B，C中，值分别为1，2，4。同个值同时存在多个版本，就是数据库的多版本并发(MVCC)，对于A来说，要想得到1，必须经历所有的回滚操作才可以得到。同时，即使现在有另外一个事务正在将 4 改成 5，这个事务跟 read-view A、B、C 对应的事务是不会冲突的。</p>
-<p>回滚日志删除时机：当系统里没有比这条回滚日志更早的 read-view 的时候。</p>
-<p>尽力不要使用长事务！因为长事务会导致里面存在很老的事务视图。在事务提交之前，数据库里它可能用到的很多回滚操作都必须保留，导致大量占用存储空间。</p>
-<p>比如说一个很长的事务A，调用了read-view A，直到7，8个小时过去，A都没有commit，但是在这期间，B，C，D，E…等等事务都对值进行了更改，但是都是很短的事务，但是由于A没有commit，这些事务更新数据产生的所有回滚日志都会被保留。所以不要使用长事务！</p>
-<p>此外，长事务还占用锁资源，甚至拖垮整个库。</p>
-<h3 id="事务启动方式"><a href="#事务启动方式" class="headerlink" title="事务启动方式"></a>事务启动方式</h3><p>Mysql的事务启动方式有两种：</p>
-<ul>
-<li>显式启动（建议！），begin或start transaction，配套提交是commit，回滚是rollback</li>
-<li>set autocommit=0，会将这个线程的自动提交关掉，意味着如果只执行一个select语句，这个事务就启动了，并且不会自动提交，这个事务会持续存在直到主动执行commit或rollback语句，或者断开连接。</li>
-</ul>
-<p>有些客户端在连接成功后会先执行set autocommit=0，如果是长连接，就会导致意外的长事务，所以建议使用set autocommit=1，通过显式语句启动事务。</p>
-<p>但是这样会导致每个事务启动前都要执行一次”begin”操作，所以建议提交使用commit work and chain，表示提交事务并自动启动下一个事务，省去了再次执行begin的开销，同时带来的好处是从程序开发的角度，可以明确地知道每个语句是否处于事务中。</p>
-<p>为了方便理解，以下为自己的例子：</p>
-<p>set autocommit=0时，插入并不能查到结果，需要commit后才可以查到结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex1.png" alt="ex1"></p>
-<p>下图第一句是commit前的查询，第二句是commit后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex2.png" alt="ex2"></p>
-<p>set autocommit=1时，插入即可查到结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex3.png" alt="ex3"></p>
-<p><img src="..\..\..\..\extra-img\ex4.png" alt="ex4"></p>
-<p>而在begin或者start transaction后，则会体现于set autocommit一样的结果，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex5.png" alt="ex5"></p>
-<p>下图第一句是commit前的查询，第二句是commit后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex6.png" alt="ex6"></p>
-<p>但是用完commit后，就又回到了第三张与第四张图的状态，所以也就存在要重复使用begin的问题，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex7.png" alt="ex7"></p>
-<p><img src="..\..\..\..\extra-img\ex8.png" alt="ex8"></p>
-<p>所以就要用到commit work and chain字段，结果如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex9.png" alt="ex9"></p>
-<p>下图第一句是commit work and chain前的查询，第二句是commit work and chain后的查询。</p>
-<p><img src="..\..\..\..\extra-img\ex10.png" alt="ex10"></p>
-<p>发现在使用后就好像自动用了一个begin一样，最后我输入了commit将结果更新到库中，如下所示：</p>
-<p><img src="..\..\..\..\extra-img\ex11.png" alt="ex11"></p>
-<p>最后，查询超过60s的长事务：information_schema 库的 innodb_trx表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from information_schema.innodb_trx where TIME_TO_SEC(timediff(now(),trx_started))&gt;60</span><br></pre></td></tr></table></figure>
+<p>HTTP代理有一种特殊的代理协议，由知名软件HAProxy制定。</p>
+<h2 id="思考题2"><a href="#思考题2" class="headerlink" title="思考题2"></a>思考题2</h2><ol>
+<li><p>DNS与URL有什么关系？</p>
+<p>DNS是将主机名解析为IP，进而根据IP协议进行路由，而URL是协议+主机名+路径，记录文件位置。</p>
+</li>
+<li><p>举例子形容“代理”：</p>
+<p>比如小明想找开锁公司，它给114打电话，114帮他转接到开锁公司，114就是代理。</p>
+</li>
+</ol>
 
       
 
@@ -390,7 +375,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
         		</li>
       		
 		</ul>
@@ -446,7 +431,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/26/20200526学习总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/29/20200529学习总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -460,18 +445,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/28/20200528学习总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          亚信科技 数据库学习day3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/25/20200525学习总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">亚信科技 数据库学习day1</div>
+    <a href="/2020/05/28/20200528学习总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">亚信科技 数据库学习day3</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -499,7 +475,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20200526学习总结" data-title="亚信科技 数据库学习day2" data-url="http://yoursite.com/2020/05/26/20200526学习总结/"></div>
+	<div class="ds-thread" data-thread-key="20200529学习总结" data-title="亚信科技 数据库学习day4" data-url="http://yoursite.com/2020/05/29/20200529学习总结/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -520,7 +496,7 @@
   
 
   
-  <div id="SOHUCS" sid="20200526学习总结"></div> 
+  <div id="SOHUCS" sid="20200529学习总结"></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
 <script type="text/javascript">
     window.changyan.api.config({
