@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/12 | 菜鸡本鸡</title>
+  <title>初探Nginx | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="老咸鱼了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="菜鸡本鸡">
-<meta property="og:url" content="http://yoursite.com/archives/2019/12/index.html">
+  <meta name="description" content="试着操作一下Nginx+Tomcat环境的构建，尝试简单的负载均衡。 操作环境：Ubnutu 因为是个新系统，所以首先： 1sudo apt-get install nginx 提升权限语句，方便后续操作 1sudo su 如何构架多个Tomcat服务器到ubnutu？ 首先先解压四个tomcat包，在解压每一个过后，都要修改解压文件夹的名字，类似如下流程 12345678tar -zxvf ap">
+<meta name="keywords" content="Nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探Nginx">
+<meta property="og:url" content="http://yoursite.com/2020/05/29/nginx初探/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
-<meta property="og:description" content="老咸鱼了">
+<meta property="og:description" content="试着操作一下Nginx+Tomcat环境的构建，尝试简单的负载均衡。 操作环境：Ubnutu 因为是个新系统，所以首先： 1sudo apt-get install nginx 提升权限语句，方便后续操作 1sudo su 如何构架多个Tomcat服务器到ubnutu？ 首先先解压四个tomcat包，在解压每一个过后，都要修改解压文件夹的名字，类似如下流程 12345678tar -zxvf ap">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/extra-img/tomcat8081-1.png">
+<meta property="og:image" content="http://yoursite.com/extra-img/tomcat8081-2.png">
+<meta property="og:image" content="http://yoursite.com/extra-img/tomcat8083.png">
+<meta property="og:image" content="http://yoursite.com/extra-img/负载均衡变化过程.gif">
+<meta property="og:updated_time" content="2020-05-29T13:58:07.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="菜鸡本鸡">
-<meta name="twitter:description" content="老咸鱼了">
+<meta name="twitter:title" content="初探Nginx">
+<meta name="twitter:description" content="试着操作一下Nginx+Tomcat环境的构建，尝试简单的负载均衡。 操作环境：Ubnutu 因为是个新系统，所以首先： 1sudo apt-get install nginx 提升权限语句，方便后续操作 1sudo su 如何构架多个Tomcat服务器到ubnutu？ 首先先解压四个tomcat包，在解压每一个过后，都要修改解压文件夹的名字，类似如下流程 12345678tar -zxvf ap">
+<meta name="twitter:image" content="http://yoursite.com/extra-img/tomcat8081-1.png">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -183,60 +190,231 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nginx初探" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/27/Markdown相关操作/" class="archive-article-date">
-  	<time datetime="2019-12-27T13:04:41.250Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/27/Markdown相关操作/">Markdown相关操作</a>
+    <h1 class="article-title" itemprop="name">
+      初探Nginx
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/05/29/nginx初探/" class="archive-article-date">
+  	<time datetime="2020-05-29T07:45:33.577Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>试着操作一下Nginx+Tomcat环境的构建，尝试简单的负载均衡。</p>
+<p>操作环境：Ubnutu</p>
+<p>因为是个新系统，所以首先：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<p>提升权限语句，方便后续操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+<p>如何构架多个Tomcat服务器到ubnutu？</p>
+<p>首先先解压四个tomcat包，在解压每一个过后，都要修改解压文件夹的名字，类似如下流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8080</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8081</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8082</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8083</span><br></pre></td></tr></table></figure>
+<p>然后修改8080之外，所有文件夹中的/conf/server.xml，要修改两个地方，以8081为例，其他两个仅与示例尾数不同：</p>
+<p><img src="..\..\..\..\extra-img\tomcat8081-1.png" alt="tomcat8081-1"></p>
+<p><img src="..\..\..\..\extra-img\tomcat8081-2.png" alt="tomcat8081-2"></p>
+<p>然后分别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh /bin/startup.sh</span><br></pre></td></tr></table></figure>
+<p>即可看到效果</p>
+<p>接下来需要将两者进行耦合，进行负载均衡模拟。</p>
+<p>为了查看效果，修改/webapps/ROOT/index.jsp中的某个属性，以方便在实验时看到页面的不同之处，我修改的是Home字段。分别改为了Home1到Home4，/tomcat8083/webapps/ROOT/index.jsp中修改如下：</p>
+<p><img src="..\..\..\..\extra-img\tomcat8083.png" alt="tomcat8083"></p>
+<p>修改完成后，开始修改nginx.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>http大括号内加入如下负载均衡字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">        upstream localhost&#123;</span><br><span class="line"></span><br><span class="line">        server 192.168.226.133:8080 weight=1;</span><br><span class="line">        server 192.168.226.133:8081 weight=2;	#前面是服务器的地址，如果nginx与tomcat</span><br><span class="line">        server 192.168.226.133:8082 weight=3;	#在一个服务器中，localhost也可以</span><br><span class="line">        server 192.168.226.133:8083 weight=4;	#weight是权重，越大，分配的负载越多</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">        server &#123;</span><br><span class="line">        listen  80;</span><br><span class="line">        server_name 192.168.226.133;</span><br><span class="line">        location / &#123;</span><br><span class="line">        root html;</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">        proxy_connect_timeout 3;	#nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">        proxy_send_timeout 30;	#后端服务器数据回传时间(代理发送超时) </span><br><span class="line">        proxy_read_timeout 30;	#连接成功后，后端服务器响应时间(代理接收超时) </span><br><span class="line">        proxy_pass http://localhost;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>重新启动nginx之后，直接在本机访问192.168.226.133，并不断按刷新，结果如下：</p>
+<p><img src="..\..\..\..\extra-img\负载均衡变化过程.gif" alt="负载均衡变化过程"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>在此叩谢<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/29/nginx初探/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/05/29/20200529学习总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">亚信科技 计网学习day1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="nginx初探" data-title="初探Nginx" data-url="http://yoursite.com/2020/05/29/nginx初探/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="nginx初探"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cyucd0aLb",
+        conf: "547e882b25af018112302b489d2d15b0"
+    });
+</script>
+
+  
+
+  
+
+  
 
 
           </div>
@@ -259,8 +437,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

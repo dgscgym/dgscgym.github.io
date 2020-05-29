@@ -8,13 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="老咸鱼了">
+<meta property="og:type" content="website">
 <meta property="og:title" content="菜鸡本鸡">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
+<meta property="og:description" content="老咸鱼了">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="菜鸡本鸡">
+<meta name="twitter:description" content="老咸鱼了">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -66,6 +69,8 @@
 				<li><a href="/tags/操作系统/">操作系统</a></li>
 	        
 				<li><a href="/tags/数据库相关/">数据库相关</a></li>
+	        
+				<li><a href="/tags/Nginx/">Nginx</a></li>
 	        
 			</ul>
 		</nav>
@@ -131,6 +136,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -149,17 +156,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/博客相关/">博客相关</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/博客相关/">博客相关</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/数据结构/">数据结构</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/数据结构/">数据结构</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/计算机网络/">计算机网络</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/计算机网络/">计算机网络</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/操作系统/">操作系统</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/操作系统/">操作系统</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/数据库相关/">数据库相关</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/数据库相关/">数据库相关</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/Nginx/">Nginx</a></li>
 		        
 				</ul>
 			</nav>
@@ -176,6 +185,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-nginx初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/29/nginx初探/">初探Nginx</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/29/nginx初探/" class="archive-article-date">
+  	<time datetime="2020-05-29T07:45:33.577Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>试着操作一下Nginx+Tomcat环境的构建，尝试简单的负载均衡。</p>
+<p>操作环境：Ubnutu</p>
+<p>因为是个新系统，所以首先：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<p>提升权限语句，方便后续操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+<p>如何构架多个Tomcat服务器到ubnutu？</p>
+<p>首先先解压四个tomcat包，在解压每一个过后，都要修改解压文件夹的名字，类似如下流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8080</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8081</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8082</span><br><span class="line">tar -zxvf apache-tomcat-7.0.104.tar.gz</span><br><span class="line">mv apache-tomcat-7.0.104.tar.gz tomcat8083</span><br></pre></td></tr></table></figure>
+<p>然后修改8080之外，所有文件夹中的/conf/server.xml，要修改两个地方，以8081为例，其他两个仅与示例尾数不同：</p>
+<p><img src="..\..\..\..\extra-img\tomcat8081-1.png" alt="tomcat8081-1"></p>
+<p><img src="..\..\..\..\extra-img\tomcat8081-2.png" alt="tomcat8081-2"></p>
+<p>然后分别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh /bin/startup.sh</span><br></pre></td></tr></table></figure>
+<p>即可看到效果</p>
+<p>接下来需要将两者进行耦合，进行负载均衡模拟。</p>
+<p>为了查看效果，修改/webapps/ROOT/index.jsp中的某个属性，以方便在实验时看到页面的不同之处，我修改的是Home字段。分别改为了Home1到Home4，/tomcat8083/webapps/ROOT/index.jsp中修改如下：</p>
+<p><img src="..\..\..\..\extra-img\tomcat8083.png" alt="tomcat8083"></p>
+<p>修改完成后，开始修改nginx.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>http大括号内加入如下负载均衡字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">        upstream localhost&#123;</span><br><span class="line"></span><br><span class="line">        server 192.168.226.133:8080 weight=1;</span><br><span class="line">        server 192.168.226.133:8081 weight=2;	#前面是服务器的地址，如果nginx与tomcat</span><br><span class="line">        server 192.168.226.133:8082 weight=3;	#在一个服务器中，localhost也可以</span><br><span class="line">        server 192.168.226.133:8083 weight=4;	#weight是权重，越大，分配的负载越多</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">        server &#123;</span><br><span class="line">        listen  80;</span><br><span class="line">        server_name 192.168.226.133;</span><br><span class="line">        location / &#123;</span><br><span class="line">        root html;</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">        proxy_connect_timeout 3;	#nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">        proxy_send_timeout 30;	#后端服务器数据回传时间(代理发送超时) </span><br><span class="line">        proxy_read_timeout 30;	#连接成功后，后端服务器响应时间(代理接收超时) </span><br><span class="line">        proxy_pass http://localhost;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>重新启动nginx之后，直接在本机访问192.168.226.133，并不断按刷新，结果如下：</p>
+<p><img src="..\..\..\..\extra-img\负载均衡变化过程.gif" alt="负载均衡变化过程"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20200529学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -183,7 +287,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/29/20200529学习总结/">亚信科技 数据库学习day4</a>
+      <a class="article-title" href="/2020/05/29/20200529学习总结/">亚信科技 计网学习day1</a>
     </h1>
   
 
@@ -793,11 +897,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库相关</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
             
             <div class="clearfix"></div>
