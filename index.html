@@ -72,6 +72,8 @@
 	        
 				<li><a href="/tags/Nginx/">Nginx</a></li>
 	        
+				<li><a href="/tags/IELTS/">IELTS</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -138,6 +140,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -156,19 +160,21 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
+					<li style="width: 12.5%"><a href="/">主页</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/博客相关/">博客相关</a></li>
+					<li style="width: 12.5%"><a href="/tags/博客相关/">博客相关</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/数据结构/">数据结构</a></li>
+					<li style="width: 12.5%"><a href="/tags/数据结构/">数据结构</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/计算机网络/">计算机网络</a></li>
+					<li style="width: 12.5%"><a href="/tags/计算机网络/">计算机网络</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/操作系统/">操作系统</a></li>
+					<li style="width: 12.5%"><a href="/tags/操作系统/">操作系统</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/数据库相关/">数据库相关</a></li>
+					<li style="width: 12.5%"><a href="/tags/数据库相关/">数据库相关</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/Nginx/">Nginx</a></li>
+					<li style="width: 12.5%"><a href="/tags/Nginx/">Nginx</a></li>
+		        
+					<li style="width: 12.5%"><a href="/tags/IELTS/">IELTS</a></li>
 		        
 				</ul>
 			</nav>
@@ -184,6 +190,251 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-20200603学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/03/20200603学习总结/">亚信科技 计网学习day3</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/03/20200603学习总结/" class="archive-article-date">
+  	<time datetime="2020-06-03T01:29:07.020Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日内容：HTTP报文构成、HTTP协议运行全过程、HTTP请求方法·</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#1%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94%E8%A1%8C">1.请求/响应行</a></li>
+<li><a href="#2head%E8%AF%B7%E6%B1%82%E8%A1%8C%E5%A4%B4%E9%83%A8%E5%AD%97%E6%AE%B5head">2.HEAD（请求行+头部字段=head）</a><ul>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%A4%B4%E5%AD%97%E6%AE%B5">常用头字段</a></li>
+</ul>
+</li>
+<li><a href="#3-%E4%BD%BF%E7%94%A8ip%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1%E5%99%A8">3. 使用IP访问WEB服务器</a></li>
+<li><a href="#4%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AEweb%E6%9C%8D%E5%8A%A1%E5%99%A8">4.域名访问WEB服务器</a></li>
+<li><a href="#5%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83">5.真实环境</a></li>
+<li><a href="#6%E6%A0%87%E5%87%86%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">6.标准请求方法</a></li>
+<li><a href="#7%E6%A0%87%E5%87%86%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E4%B9%8B%E5%A4%96">7.标准请求方法之外</a></li>
+<li><a href="#8%E5%AE%89%E5%85%A8%E4%B8%8E%E5%B9%82%E7%AD%89">8.安全与幂等</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+        
+          <a class="article-more-a" href="/2020/06/03/20200603学习总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20200602学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/20200602学习总结/">亚信科技 计网学习day2</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/20200602学习总结/" class="archive-article-date">
+  	<time datetime="2020-06-02T08:10:05.386Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今日内容：“四层”、“七层”、域名的门道</p>
+<p>TCP/IP——有层次的协议栈</p>
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
+<ul>
+<li><a href="#1%E5%9B%9B%E5%B1%82tcpip">1.“四层”——TCP/IP</a></li>
+<li><a href="#2%E4%B8%83%E5%B1%82osi">2.“七层”——OSI</a></li>
+<li><a href="#3%E6%80%BB%E7%BB%93">3.总结</a></li>
+<li><a href="#4%E5%9F%9F%E5%90%8D%E5%BD%A2%E5%BC%8F">4.域名形式</a></li>
+<li><a href="#5%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90">5.域名解析</a></li>
+<li><a href="#6%E5%9F%9F%E5%90%8D%E6%96%B0%E7%8E%A9%E6%B3%95">6.域名新玩法</a></li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/06/02/20200602学习总结/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ielts word 48" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/Ielts word 48/">IELTS Word List 48</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/Ielts word 48/" class="archive-article-date">
+  	<time datetime="2020-06-01T05:23:32.020Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>telegraph</p>
+<p>episodic</p>
+<p>trespass</p>
+        
+          <a class="article-more-a" href="/2020/06/01/Ielts word 48/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IELTS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-nginx初探" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -871,7 +1122,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客相关</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -879,7 +1130,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">博客相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IELTS</a>
               </li>
              
               <li class="article-tag-list-item">

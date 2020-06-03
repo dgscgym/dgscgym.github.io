@@ -6,30 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>亚信科技 数据库学习day3 | 菜鸡本鸡</title>
+  <title>亚信科技 计网学习day2 | 菜鸡本鸡</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今日内容：Mysql的索引细节   Table of Contents  generated with DocToc  1. 索引的常见类型 哈希表 有序数组 二叉搜索树   2.InnoDB 的索引模型——B+树 索引维护   思考题1 3.索引优化 覆盖索引 最左前缀原则 索引下推   思考题2">
-<meta name="keywords" content="数据库相关">
+  <meta name="description" content="今日内容：“四层”、“七层”、域名的门道 TCP/IP——有层次的协议栈 Table of Contents  generated with DocToc  1.“四层”——TCP/IP 2.“七层”——OSI 3.总结 4.域名形式 5.域名解析 6.域名新玩法">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="亚信科技 数据库学习day3">
-<meta property="og:url" content="http://yoursite.com/2020/05/28/20200528学习总结/index.html">
+<meta property="og:title" content="亚信科技 计网学习day2">
+<meta property="og:url" content="http://yoursite.com/2020/06/02/20200602学习总结/index.html">
 <meta property="og:site_name" content="菜鸡本鸡">
-<meta property="og:description" content="今日内容：Mysql的索引细节   Table of Contents  generated with DocToc  1. 索引的常见类型 哈希表 有序数组 二叉搜索树   2.InnoDB 的索引模型——B+树 索引维护   思考题1 3.索引优化 覆盖索引 最左前缀原则 索引下推   思考题2">
+<meta property="og:description" content="今日内容：“四层”、“七层”、域名的门道 TCP/IP——有层次的协议栈 Table of Contents  generated with DocToc  1.“四层”——TCP/IP 2.“七层”——OSI 3.总结 4.域名形式 5.域名解析 6.域名新玩法">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/extra-img/哈希索引.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/二叉搜索树索引.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/B+树.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/B+树例子.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/B+树例子.png">
-<meta property="og:image" content="http://yoursite.com/extra-img/最左前缀.jpg">
-<meta property="og:image" content="http://yoursite.com/extra-img/最左前缀.jpg">
-<meta property="og:image" content="http://yoursite.com/extra-img/索引下推1.jpg">
-<meta property="og:image" content="http://yoursite.com/extra-img/索引下推2.jpg">
-<meta property="og:updated_time" content="2020-05-29T07:43:43.666Z">
+<meta property="og:updated_time" content="2020-06-03T03:40:17.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="亚信科技 数据库学习day3">
-<meta name="twitter:description" content="今日内容：Mysql的索引细节   Table of Contents  generated with DocToc  1. 索引的常见类型 哈希表 有序数组 二叉搜索树   2.InnoDB 的索引模型——B+树 索引维护   思考题1 3.索引优化 覆盖索引 最左前缀原则 索引下推   思考题2">
-<meta name="twitter:image" content="http://yoursite.com/extra-img/哈希索引.png">
+<meta name="twitter:title" content="亚信科技 计网学习day2">
+<meta name="twitter:description" content="今日内容：“四层”、“七层”、域名的门道 TCP/IP——有层次的协议栈 Table of Contents  generated with DocToc  1.“四层”——TCP/IP 2.“七层”——OSI 3.总结 4.域名形式 5.域名解析 6.域名新玩法">
   
     <link rel="alternative" href="/atom.xml" title="菜鸡本鸡" type="application/atom+xml">
   
@@ -201,159 +191,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20200528学习总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20200602学习总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      亚信科技 数据库学习day3
+      亚信科技 计网学习day2
     </h1>
   
 
         
-        <a href="/2020/05/28/20200528学习总结/" class="archive-article-date">
-  	<time datetime="2020-05-28T14:30:23.310Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-28</time>
+        <a href="/2020/06/02/20200602学习总结/" class="archive-article-date">
+  	<time datetime="2020-06-02T08:10:05.386Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今日内容：Mysql的索引细节</p>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+        <p>今日内容：“四层”、“七层”、域名的门道</p>
+<p>TCP/IP——有层次的协议栈</p>
 <p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc" target="_blank" rel="noopener">DocToc</a></em></p>
 <ul>
-<li><a href="#1-%E7%B4%A2%E5%BC%95%E7%9A%84%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B">1. 索引的常见类型</a><ul>
-<li><a href="#%E5%93%88%E5%B8%8C%E8%A1%A8">哈希表</a></li>
-<li><a href="#%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84">有序数组</a></li>
-<li><a href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91">二叉搜索树</a></li>
+<li><a href="#1%E5%9B%9B%E5%B1%82tcpip">1.“四层”——TCP/IP</a></li>
+<li><a href="#2%E4%B8%83%E5%B1%82osi">2.“七层”——OSI</a></li>
+<li><a href="#3%E6%80%BB%E7%BB%93">3.总结</a></li>
+<li><a href="#4%E5%9F%9F%E5%90%8D%E5%BD%A2%E5%BC%8F">4.域名形式</a></li>
+<li><a href="#5%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90">5.域名解析</a></li>
+<li><a href="#6%E5%9F%9F%E5%90%8D%E6%96%B0%E7%8E%A9%E6%B3%95">6.域名新玩法</a></li>
 </ul>
-</li>
-<li><a href="#2innodb-%E7%9A%84%E7%B4%A2%E5%BC%95%E6%A8%A1%E5%9E%8Bb%E6%A0%91">2.InnoDB 的索引模型——B+树</a><ul>
-<li><a href="#%E7%B4%A2%E5%BC%95%E7%BB%B4%E6%8A%A4">索引维护</a></li>
-</ul>
-</li>
-<li><a href="#%E6%80%9D%E8%80%83%E9%A2%981">思考题1</a></li>
-<li><a href="#3%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96">3.索引优化</a><ul>
-<li><a href="#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95">覆盖索引</a></li>
-<li><a href="#%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E5%8E%9F%E5%88%99">最左前缀原则</a></li>
-<li><a href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8">索引下推</a></li>
-</ul>
-</li>
-<li><a href="#%E6%80%9D%E8%80%83%E9%A2%982">思考题2</a></li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <a id="more"></a>
-<p>来源致谢：</p>
-<p><a href="https://time.geekbang.org/column/article/c8b462e6cc63cbe18ff986fb6e203b3d/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage" target="_blank" rel="noopener">https://time.geekbang.org/column/article/c8b462e6cc63cbe18ff986fb6e203b3d/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage</a></p>
-<p><a href="https://time.geekbang.org/column/article/a4ba9f5a0894eed77bdd67b9d46c6400/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage" target="_blank" rel="noopener">https://time.geekbang.org/column/article/a4ba9f5a0894eed77bdd67b9d46c6400/share?code=TD8-VK4w0p2la4ExV065M2oA0n-EHHuRRswghplAvF4%3D&amp;from=groupmessage</a></p>
-<p>侵删。</p>
-<p>索引约等于书的目录，以存储空间(类比为书的额外页数)为代价提高查找效率。</p>
-<h2 id="1-索引的常见类型"><a href="#1-索引的常见类型" class="headerlink" title="1. 索引的常见类型"></a>1. 索引的常见类型</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>哈希表是以key-value形式存储数据的结构，输入key就可以换算成一个确定的位置，然后把value放在对应位置即可。</p>
-<p>如果多个key指向同一个位置怎么办？——在那个位置拉出一个链表。</p>
-<p>假设现在有一身份证信息与姓名对应的表，需要根据身份证号查找姓名，其哈希索引示意图如下：</p>
-<p><img src="..\..\..\..\extra-img\哈希索引.png" alt="哈希索引"></p>
-<p>图中，User2 和 User4 根据身份证号算出来的值都是N，这个位置后面跟了一个链表。假设这时候要查 ID_card_n2 对应的名字，处理步骤就是：首先，将 ID_card_n2 通过哈希函数算出 N；然后，按<strong>顺序</strong>遍历，找到 User2。</p>
-<p>其不是有序的，所以其优点是：<strong>增加新的 User 时速度会很快</strong></p>
-<p>但缺点是：哈希索引做<strong>区间查询</strong>的速度很慢，以上图为例，如果要找身份证号在[ID_card_X, ID_card_Y]这个区间所有用户，就必须要整个表全扫一遍了。</p>
-<p>哈希表适用范围：只有等值查询的场景，如Memcached以及其他一些NoSQL引擎。</p>
-<h3 id="有序数组"><a href="#有序数组" class="headerlink" title="有序数组"></a>有序数组</h3><p>由于有序存放，其优点：等值查询以及区间查询都很快。</p>
-<p>但是缺点：修改数据效率低，因为会对节点后所有数据造成影响。</p>
-<p>所以适用范围：只适用于<strong>静态存储引擎</strong>（不会再修改的数据最好）</p>
-<h3 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h3><p>还是哈希表中的例子，二叉搜索树索引示意图如下：</p>
-<p><img src="..\..\..\..\extra-img\二叉搜索树索引.png" alt="二叉搜索树索引"></p>
-<p>二叉搜索树——左儿子 &lt; 父亲，右儿子 &gt; 父亲。</p>
-<p>假如找ID_CARD_N2，搜索顺序为UserA -&gt; UserC -&gt; UserF -&gt; User2 。时间复杂度是 O(log(N))。</p>
-<p>为了维持O(log(N))的时间复杂度，需要保证二叉搜索树为平衡二叉树，做这个保证进行更新的复杂度也为O(log(N))。</p>
-<p><strong>然而，索引还要写到磁盘中</strong>，比如有100W个节点的平衡二叉树，其树高应为20(2^20 &gt; 100W)，所以一次查询可能要搜索20个数据块，也就是说对磁盘要进行20次随机读数据块的操作，效率很差！</p>
-<p>如何解决？——N叉搜索树。</p>
-<p>N为1200时，在17亿个数据块查找指定块，仅需最多三次查询(1200^3 &gt; 17亿)，可极大较少从磁盘读的次数。</p>
-<h2 id="2-InnoDB-的索引模型——B-树"><a href="#2-InnoDB-的索引模型——B-树" class="headerlink" title="2.InnoDB 的索引模型——B+树"></a>2.InnoDB 的索引模型——B+树</h2><p>类似下图的N叉树就称之为B+树。</p>
-<p><img src="..\..\..\..\extra-img\B+树.png" alt="B+树"></p>
-<p>首先，InnoDB会默认创建主键索引，也就是说每张表都会有主键。可通过_rowid列查看，主键一般会默认为出现的第一个同时满足非空和唯一索引的列。</p>
-<p>因此，InnoDB引擎的表都是按照主键顺序以索引形式存放，这种存储方式的表叫做索引组织表。也因此，所有的数据都会存放在B+树中。</p>
-<p>每一个索引都对应一个B+树。</p>
-<p>假设有一主键列为ID的表，建表语句如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> T(</span><br><span class="line"><span class="keyword">id</span> <span class="built_in">int</span> primary <span class="keyword">key</span>, </span><br><span class="line">k <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span>, </span><br><span class="line"><span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">16</span>),</span><br><span class="line"><span class="keyword">index</span> (k))<span class="keyword">engine</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure>
-<p>并插入R1~R5的(ID,K)值分别为(100,1)、(200,2)、(300,3)、(500,5) 和 (600,6)，因为有主键索引(聚簇索引)和非主键索引(二级索引)，所以共两颗B+树，两棵树的示例示意图如下。</p>
-<p><img src="..\..\..\..\extra-img\B+树例子.png" alt="B+树例子"></p>
-<p>两种索引的区别？——基于两种索引的查询方式不同</p>
-<ul>
-<li>SELECT * FROM T WHERE ID=500，主键索引查询方式，就只搜索第一个树</li>
-<li>SELECT * FROM T WHERE K=5，非主键索引查询方式，需要先搜索第二个树，得到主键ID=500，再去搜第一个树得到结果，这称之为<strong>回表</strong></li>
+<h2 id="1-“四层”——TCP-IP"><a href="#1-“四层”——TCP-IP" class="headerlink" title="1.“四层”——TCP/IP"></a>1.“四层”——TCP/IP</h2><ul>
+<li><p>链接层：负责在以太网上发送原始数据包，使用MAC地址标注网络上设备，也叫MAC层</p>
+</li>
+<li><p>网络层：IP协议，用IP地址替代MAC地址，将局域网广域网组成巨大的虚拟网络，将IP翻译为MAC地址即可。（ARP）</p>
+</li>
+<li><p>传输层：保证数据在IP两点间可靠传输（TCP/UDP）TCP要建立状态、UDP不用；TCP发送连续字节流、UDP发送分散小数据包、TCP三次握手四次挥手</p>
+</li>
+<li><p>应用层：SSH、FTP、SMTP等</p>
+</li>
+<li><p>四层负载均衡工作在传输层，利用IP，端口号实现</p>
+<p>工作方式例子：假设你想把一件毛绒玩具送给朋友，但你要先拿个塑料袋套一下，这件玩具就相当于 HTTP 协议里要传输的内容，比如 HTML，然后 HTTP 协议为它加一个 HTTP 专用附加数据。你把玩具交给快递小哥，为了保护货物，他又加了层包装再贴了个标签，相当于在 TCP 层给数据再次打包，加上了 TCP 头。接着快递小哥下楼，把包裹放进了三轮车里，运到集散点，然后再装进更大的卡车里，相当于在 IP 层、MAC 层对 TCP 数据包加上了 IP 头、MAC 头。之后经过漫长的运输，包裹到达目的地，要卸货再放进另一位快递员的三轮车，就是在 IP 层、MAC 层传输后拆包。快递员到了你朋友的家门口，撕掉标签，去除了 TCP 层的头，你朋友再拆掉塑料袋包装，也就是 HTTP 头，最后就拿到了玩具，也就是真正的 HTTP 头，最后就拿到了玩具，也就是真正的 HTML 页面。（来源：<a href="https://time.geekbang.org/column/article/532f11088f06cd5b352b07271e8753e1/share?code=DReXQjWZfHVDReZa2NxzSOgHjiw1o3SWnfcQ%2Fdn0qA8%3D&amp;oss_token=）" target="_blank" rel="noopener">https://time.geekbang.org/column/article/532f11088f06cd5b352b07271e8753e1/share?code=DReXQjWZfHVDReZa2NxzSOgHjiw1o3SWnfcQ%2Fdn0qA8%3D&amp;oss_token=）</a></p>
+</li>
 </ul>
-<p>为了防止回表，查询尽量使用主键查询！</p>
-<h3 id="索引维护"><a href="#索引维护" class="headerlink" title="索引维护"></a>索引维护</h3><ol>
-<li>维护B+树索引有序性——如果加大的ID，只需要在后面追加，但是加小ID时则需要挪动后面的数据腾出空间</li>
-<li>页分裂——如果R5所在数据页满了，需要申请新的数据页，然后挪动部分数据过去，性能会受影响，还会影响页的利用率(大概降低50%)</li>
-<li>页合并——两页利用率都很低的情况下，会将两页合并，是页分裂的逆过程</li>
-</ol>
-<p>避免上述三个维护机制中效率较低情形出现，就是推行<strong>自增主键</strong>性能方面的原因。然而，从存储空间角度看，自增主键最多就是长整型，8个字节大小。会节省普通索引树中叶子节点占用空间，也就会减少普通索引占用空间。</p>
-<p>业务中不用自增主键，用自己业务字段直接做主键的情况：</p>
-<ol>
-<li>只有一个索引（不用考虑叶子节点大小）</li>
-<li>该索引必须为唯一索引（主键的条件）</li>
-</ol>
-<h2 id="思考题1"><a href="#思考题1" class="headerlink" title="思考题1"></a>思考题1</h2><p>对于上面例子中的 InnoDB 表 T，如果你要重建索引 k，，你的两个 SQL 语句可以这么写：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T <span class="keyword">drop</span> <span class="keyword">index</span> k;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T <span class="keyword">add</span> <span class="keyword">index</span>(k);</span><br></pre></td></tr></table></figure>
-<p>重建主键索引也可以这样：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T <span class="keyword">drop</span> primary <span class="keyword">key</span>;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> T <span class="keyword">add</span> primary <span class="keyword">key</span>(<span class="keyword">id</span>);</span><br></pre></td></tr></table></figure>
-<p>对于上面这两个重建索引的作法，说出你的理解。如果有不合适的，为什么，更好的方法是什么？</p>
-<p>answer：</p>
+<h2 id="2-“七层”——OSI"><a href="#2-“七层”——OSI" class="headerlink" title="2.“七层”——OSI"></a>2.“七层”——OSI</h2><p>晚于TCP/IP出现——推翻不现实、只能提供参考</p>
 <ul>
-<li>为什么重建索引？——索引会因为删除、页分裂等原因导致数据页有空洞，重建索引会创建新的索引，将数据按排序插入，提高页面利用率，省空间。</li>
-<li>所以重建索引k是合理的，因为可以省空间。</li>
-<li>重建主键不合理，因为重建主键意味着重建整个表，执行第二局后，第一句就白做了。这两个语句可以用alter table T engine=InnoDB代替。</li>
+<li>物理层：网卡</li>
+<li>数据链路层：等于链接层</li>
+<li>网络层：等于网络层</li>
+<li>传输层：等于传输层</li>
+<li>会话层：维持网络连接状态</li>
+<li>表示层：把数据转换为可理解语义</li>
+<li>应用层：面向具体应用传输数据</li>
+<li>七层负载均衡工作在应用层。看到的是HTTP协议，利用URI、主机名实现</li>
 </ul>
-<h2 id="3-索引优化"><a href="#3-索引优化" class="headerlink" title="3.索引优化"></a>3.索引优化</h2><h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><p>对于刚刚的B+树例子</p>
-<p><img src="..\..\..\..\extra-img\B+树例子.png" alt="B+树例子"></p>
-<p>执行select * from T where k between 3 and 5，需要扫描5次：</p>
-<ol>
-<li>在 k 索引树上找到 k=3 的记录，取得 ID = 300</li>
-<li>再到 ID 索引树查到 ID=300 对应的 R3（回表）</li>
-<li>k 索引树取下一个值 k=5，取得 ID=500</li>
-<li>再回到 ID 索引树查到 ID=500 对应的 R4；（回表）</li>
-<li>在 k 索引树取下一个值 k=6，不满足条件，循环结束</li>
-</ol>
-<p>如果只执行select ID from T where k between 3 and 5，k索引树上已经存在ID值，所以不会执行回表操作（也就达到了优化的目的）。在这个查询中，索引k已经覆盖了我们的查询需求，就称之为覆盖索引，<strong>其可以显著提升查询性能，是常用优化手段</strong>。</p>
-<p>注意：引擎内部使用覆盖索引在索引k上读了三个记录R3~R5，但是对于Mysql的Server层来说，它仅找引擎拿了两条记录，因此Mysql认为扫描行数为2。</p>
-<p>问题：在市民信息表上是否有必要将身份证和名字建立联合索引？</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`tuser`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`id_card`</span> <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">32</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`age`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`ismale`</span> <span class="built_in">tinyint</span>(<span class="number">1</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`id_card`</span> (<span class="string">`id_card`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`name_age`</span> (<span class="string">`name`</span>,<span class="string">`age`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span></span><br></pre></td></tr></table></figure>
-<p>如果有一个高频请求，根据市民身份证查询其姓名，这个联合索引才很有意义。因为如果建立的话，此查询就不会涉及回表操作。但是索引建立一定会有代价，所以索引字段的建立需要权衡。</p>
-<h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><p>B+树索引结构，会利用索引的”最左前缀“来定位记录。</p>
-<p>以(name，age)这个联合索引为例：</p>
-<p><img src="..\..\..\..\extra-img\最左前缀.jpg" alt="最左前缀"></p>
-<p>索引项会按照（name，age）的顺序排列。</p>
-<p>如果需要找到”张三“，可以快速定位到ID4，然后向后遍历得到所有结果。如果是姓张的所有人，也可以用上这个索引，查询到ID3，然后遍历到不满足条件为止。</p>
-<p>所以，只要满足最左前缀就可以使用索引加速搜索。可以是联合索引最左N个字段，甚至可以是最左M个字符。</p>
-<p>所以，建立联合索引时如何安排索引内字段顺序？——如果可以通过调整顺序的方式少维护一个索引，这个顺序就可以优先被采用。</p>
-<p>eg. 建立（a,b）索引后就不需要建立a索引了。但是建立(b,a)索引就需要建立a索引，所以在必须要a索引以及联合索引的情况下，仅建立（a,b）索引更合理。</p>
-<p>如果既有联合查询又有基于a,b各自的查询——考虑空间</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>凡是操作系统负责就是四层以及四层以下；凡是应用程序负责处理的则是七层。</p>
+<h2 id="4-域名形式"><a href="#4-域名形式" class="headerlink" title="4.域名形式"></a>4.域名形式</h2><ul>
+<li>域名目的：好记</li>
+<li>最右边的被称为“顶级域名”，然后是“二级域名”，层级关系向左降低，最左边为主机名，表明主机用途，比如“www”表示提供万维网服务、“mail”表示提供邮件服务，不过这也不是绝对的，名字的关键是要让我们容易记忆。</li>
+<li>域名可以实现其他操作：eg.Nginx中，使用server_name指令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;                       # 监听 80 端口</span><br><span class="line">    server_name  time.geekbang.org;  # 主机名是 time.geekbang.org</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    可以标识虚拟主机，决定由哪个虚拟主机对外提供服务（见Nginx初探）</p>
 <ul>
-<li>如果 a 占用空间 &gt; b，则建立（a,b）以及b</li>
-<li>否则，(b,a) 以及a</li>
+<li>域名本质上是个名字空间系统，可以划分国家、地区、组织、公司…，每个域名都是独一无二的，可作为身份标识，而 XML 里使用 URI 作为名字空间，也是间接使用了域名。</li>
 </ul>
-<h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><p>不符合最左前缀的部分会如何？</p>
-<p>还是以下图为例</p>
-<p><img src="..\..\..\..\extra-img\最左前缀.jpg" alt="最左前缀"></p>
-<p>如果现在要查”姓张的，10岁的男孩“，找到ID3了之后呢？</p>
-<ul>
-<li>Mysql 5.6之前，从ID3一个个回表，到主键索引上找到对应的值进行比较，回表4次，如下：</li>
+<h2 id="5-域名解析"><a href="#5-域名解析" class="headerlink" title="5.域名解析"></a>5.域名解析</h2><ul>
+<li>域名转换为IP地址的过程</li>
+<li>根域名服务器（Root DNS Server）：管理顶级域名服务器，返回“com”“net”“cn”等顶级域名服务器的IP地址；顶级域名服务器（Top-level DNS Server）：管理各自域名下的权威域名服务器，比如 com 顶级域名服务器可以返回 apple.com 域名服务器的 IP 地址；权威域名服务器（Authoritative DNS Server）：管理自己域名下主机的 IP 地址，比如 apple.com权威域名服务器可以返回 <a href="http://www.apple.com" target="_blank" rel="noopener">www.apple.com</a> 的 IP地址。、</li>
+<li>目前全世界共有 13 组根域名服务器，又有数百台的镜像，保证一定可以访问到。</li>
+<li>先访问根域名服务器，它会告诉你“com”顶级域名服务器的地址；然后访问“com”顶级域名服务器，它再告诉你“apple.com”域名服务器的地址； 最后访问“apple.com”域名服务器，就得到了“<a href="http://www.apple.com”的地址。" target="_blank" rel="noopener">www.apple.com”的地址。</a></li>
+<li>减轻服务器压力？提升效率？缓存：许多大公司、网络运行商都会建立自己的 DNS 服务器作为用户DNS查询的代理，代替用户进行访问核心DNS系统，被称为“非权威域名服务器”，可以缓存查询结果，如果击中则无需查询。操作系统：其自身也可以对DNS解析结果做缓存；而且还有特殊的主机映射文件，如果缓存中找不到，即从这个文件中找（此文件可以编辑）。</li>
+<li>Nginx中有一条配置指令”resolver”，用来配置DNS服务器，如果没有它则Nginx无法查询域名对应IP，也就无法反向代理到外部网站。·</li>
 </ul>
-<p><img src="..\..\..\..\extra-img\索引下推1.jpg" alt="索引下推1"></p>
-<ul>
-<li>之后，进行索引下推优化，因为年龄在联合索引中，所以可以直接利用联合索引判断年龄，满足条件的才会回表，仅回表两次，如下：</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resolver 8.8.8.8 valid=30s;  # 指定 Google 的 DNS，缓存 30 秒</span><br></pre></td></tr></table></figure>
+<h2 id="6-域名新玩法"><a href="#6-域名新玩法" class="headerlink" title="6.域名新玩法"></a>6.域名新玩法</h2><ul>
+<li>重定向：对外域名不变，而改变主机IP地址，通知DNS即可。</li>
+<li>搭建内部使用DNS：比如数据库都用域名“mysql.inner.app”，商品服务都用“goods.inner.app”，就没必要写死的IP地址了。</li>
+<li>基于域名实现负载均衡：1. 域名解析可以返回多个IP地址，所以一个域名可以对应多台主机，所以客户端收到多个IP地址之后可以自己利用轮询算法依次向服务器发送请求，实现负载均衡；2. 域名解析可以配置内部策略，返回离客户端最近的主机或者服务质量最好的主机，就可以在DNS端将请求分发给不同用户。</li>
+<li>恶意：域名挟持、域名屏蔽</li>
 </ul>
-<p><img src="..\..\..\..\extra-img\索引下推2.jpg" alt="索引下推2"></p>
-<h2 id="思考题2"><a href="#思考题2" class="headerlink" title="思考题2"></a>思考题2</h2><p>有这样一个表：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`geek`</span> (</span><br><span class="line">  <span class="string">`a`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`b`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`c`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`d`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`a`</span>,<span class="string">`b`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`c`</span> (<span class="string">`c`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`ca`</span> (<span class="string">`c`</span>,<span class="string">`a`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`cb`</span> (<span class="string">`c`</span>,<span class="string">`b`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure>
-<p>业务里面有这两条语句</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> geek <span class="keyword">where</span> c=N <span class="keyword">order</span> <span class="keyword">by</span> a <span class="keyword">limit</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> geek <span class="keyword">where</span> c=N <span class="keyword">order</span> <span class="keyword">by</span> b <span class="keyword">limit</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>已知”ab“索引的存在是合理的，所以只需要c字段就可以了，那么，”ca”与”cb“的存在是否合理？为什么？</p>
-<p>answer:</p>
 
       
 
@@ -398,7 +317,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
         		</li>
       		
 		</ul>
@@ -454,7 +373,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/28/20200528学习总结/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/02/20200602学习总结/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -468,18 +387,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/29/20200529学习总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/03/20200603学习总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          亚信科技 计网学习day1
+          亚信科技 计网学习day3
         
       </div>
     </a>
   
   
-    <a href="/2020/05/26/20200526学习总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">亚信科技 数据库学习day2</div>
+    <a href="/2020/06/01/Ielts word 48/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">IELTS Word List 48</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -507,7 +426,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="20200528学习总结" data-title="亚信科技 数据库学习day3" data-url="http://yoursite.com/2020/05/28/20200528学习总结/"></div>
+	<div class="ds-thread" data-thread-key="20200602学习总结" data-title="亚信科技 计网学习day2" data-url="http://yoursite.com/2020/06/02/20200602学习总结/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -528,7 +447,7 @@
   
 
   
-  <div id="SOHUCS" sid="20200528学习总结"></div> 
+  <div id="SOHUCS" sid="20200602学习总结"></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
 <script type="text/javascript">
     window.changyan.api.config({
